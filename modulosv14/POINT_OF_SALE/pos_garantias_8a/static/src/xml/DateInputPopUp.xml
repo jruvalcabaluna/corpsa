@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="DateInputPopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup full-form touch-scrollable scrollable-y">
+                <div class="card">
+                    <div class="card-content">
+                         <h4 class="card-title">Garantias</h4>
+                            <div class="client-details-box clearfix">
+
+                                <div class="client-details-right">
+
+                                    <div class="row">
+                                        <label class="label">Defecto</label>
+                                        <select id="defective" name="defective" class="form-control" required="true">
+                                            <option t-attf-value='no_aplica'>N/A</option>
+                                            <option t-attf-value='midtronic'>Midtronic</option>
+                                            <option t-attf-value='abierto'>Abierto</option>
+                                            <option t-attf-value='corto'>Corto</option>
+                                            <option t-attf-value='explosion'>Explosión</option>
+                                            <option t-attf-value='no_pass_test_charge'>No pasa prueba de descarga</option>
+                                            <option t-attf-value='mal_sellada'>Mal Sellada</option>
+                                            <option t-attf-value='nueva_rota'>Nueva Rota</option>
+                                            <option t-attf-value='ajuste_politico'>Ajuste Politico</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Codigo de Autorizacion</label>
+                                        <input type="text" id="aut_code" class="form-control is-invalid" required="true"/>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Codigo de Ensamble</label>
+                                        <input type="text" id="set_code" class="form-control" required="true"/>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Codigo de Inspeccion</label>
+                                        <input type="text" id="inspect_code" class="form-control" required="true"/>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Codigo de Linea</label>
+                                        <input type="text" id="line_code" class="form-control" required="true"/>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Tipo de Uso</label>
+                                        <select id="use_type" name="use_type" class="form-control" required="true">
+                                            <option t-attf-value='particular'>Particular</option>
+                                            <option t-attf-value='commercial'>Commercial</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Tipo de Poliza</label>
+                                        <select id="type_policy" name="type_policy" class="form-control" required="true">
+                                            <option t-attf-value='no_aplica'>N/A</option>
+                                            <option t-attf-value='poliza'>Poliza</option>
+                                            <option t-attf-value='clave_red'>Clave RED</option>
+                                            <option t-attf-value='factura'>Factura</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="client-details-right">
+                                    <div class="row">
+                                        <label class="label">Fecha Venta</label>
+                                        <input type="date" t-model="state.inputValue" t-ref="input" />
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Fecha Recepcion</label>
+                                        <input id="date_receipt" type="date" t-attf-data-init-value="#{state.startingValue}" class="form-control datetimepicker" />
+                                    </div>
+                                    <div class="screen-content-flexbox">
+                                        <div class="form-group">
+                                            <label class="label">Producto</label>
+                                            <input id="product_selected" placeholder="Buscar Producto" required="true" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label">Numero de Garantia</label>
+                                        <input type="text" id="lot" class="form-control" required="true"/>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        <t t-esc="props.confirmText" />
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        <t t-esc="props.cancelText" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

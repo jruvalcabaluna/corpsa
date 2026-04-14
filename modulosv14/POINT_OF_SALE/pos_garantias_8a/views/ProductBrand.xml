@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_product_brand_items_form" model="ir.ui.view">
+            <field name="name">product.brand.form.inherit.items</field>
+            <field name="model">product.brand</field>
+            <field name="inherit_id" ref="product_brand.view_product_brand_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <notebook>
+                        <page name="product_brand_items" string="Brand Items">
+                            <field name="item_ids" nolabel="1">
+                                <tree string="Brand Items" editable="bottom">
+                                    <field name="month"/>
+                                    <field name="percentage"/>
+                                    <field name="use_type"/>
+                                    <field name="color_cap"/>
+                                    <field name="brand_id" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+</odoo>

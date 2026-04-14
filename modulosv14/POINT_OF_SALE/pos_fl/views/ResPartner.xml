@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_partner_view_form_fl" model="ir.ui.view">
+        <field name="name">res.partner.form.view.fl</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="is_doctor" />
+                <field name="barcode" string="Cedula" />
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="res_partner_action_doctor" model="ir.actions.act_window">
+            <field name="name">Doctores</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('is_doctor','=', True)]</field>
+            <field name="context">{'search_default_active':1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new doctor in your address book
+              </p><p>
+                hôlos helps you easily track all activities related to a doctor.
+              </p>
+            </field>
+        </record>
+
+
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/pos_garantias_8a/static/src/js/jquery-ui.css" />
+<!--              <link rel="stylesheet" href="/pos_garantias_8a/static/src/css/custom_select.css" />-->
+              <script type="text/javascript" src="/pos_garantias_8a/static/src/js/DiscountDateButton.js"></script>
+              <script type="text/javascript" src="/pos_garantias_8a/static/src/js/models.js"></script>
+              <script type="text/javascript" src="/pos_garantias_8a/static/src/js/DateInputPopup.js"></script>
+
+              <script type="text/javascript" src="/pos_garantias_8a/static/src/js/PaymentScreen.js"></script>
+
+          </xpath>
+        </template>
+
+</odoo>

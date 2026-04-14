@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<!--    <t t-name="EditListInput" owl="1">-->
+<!--            <div>-->
+<!--                <input type="text" t-model="props.item.text" class="popup-input list-line-input" placeholder="Serial/Lot Number" t-on-keyup="onKeyup"/>-->
+<!--                <i class="oe_link_icon fa fa-trash-o" role="img" aria-label="Remove" title="Remove" t-on-click="trigger('remove-item', props.item)"/>-->
+<!--            </div>-->
+<!--        </t>-->
+
+<!--    <t t-name="EditListPopup" owl="1">-->
+<!--            <div role="dialog" class="modal-dialog">-->
+<!--                <div class="popup popup-text">-->
+<!--                    <header class="title">-->
+<!--                        <t t-esc="props.title"/>-->
+<!--                    </header>-->
+<!--                    &lt;!&ndash; Modified by EditListPopup from pos_product_by_lot_number &ndash;&gt;-->
+<!--                    <div class="main">-->
+<!--                        <div class="packlot-holder">-->
+<!--                            <main class="list-lines" t-on-remove-item="removeItem" t-on-create-new-item="createNewItem">-->
+<!--                                <t t-foreach="state.array" t-as="item" t-key="item._id">-->
+<!--                            <EditListInput item="item"/>-->
+<!--                        </t>-->
+<!--                    </main>-->
+<!--                  </div>-->
+<!--                &lt;!&ndash; Modified by EditListPopup from pos_product_by_lot_number &ndash;&gt;-->
+<!--                        <div class="error-message">-->
+<!--                    <div class="lot-warning">Some of the lot/serial numbers do not exist!</div>-->
+<!--                    <div class="check-input">-->
+<!--                        <div style="display:flex">-->
+<!--                            <span id="check_content">Do you want to continue with the same?</span>-->
+<!--                            <select class="select-input">-->
+<!--                                <option name="no" value="no" class="selected_option">No</option>-->
+<!--                                <option name="yes" value="yes" class="selected_option">Yes</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--                </div>-->
+<!--            <footer class="footer">-->
+<!--                        <div class="button confirm" t-on-click="confirm">-->
+<!--                            Ok-->
+<!--                        </div>-->
+<!--                        <div class="button cancel" t-on-click="cancel">-->
+<!--                            Cancel-->
+<!--                        </div>-->
+<!--                    </footer>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </t>-->
+</templates>

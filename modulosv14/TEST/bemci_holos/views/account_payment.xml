@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record model="ir.ui.view" id="account_payment_form_extended">
+
+        <field name="name">account.payment.form.extended</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//field[@name='ref']" position="after">
+
+                <field name="relation_ids">
+                         <tree string="Registrar facturas">
+                            <field name="name" string="Folio"/>
+                            <field name="amount" string="Importe"/>
+                        </tree>
+                </field>
+
+             </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>

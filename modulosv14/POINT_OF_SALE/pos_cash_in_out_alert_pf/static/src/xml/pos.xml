@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pos_cash_in_out_alert_pf_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+	<t t-name="CashInButton" owl="1">
+		<span class="control-button" >
+			<i class="fa fa-money"/>
+			<span>Ingresar Efectivo</span>
+		</span>
+	</t>
+	
+	<t t-name="CashOutButton" owl="1">
+		<span class="control-button">
+			<i class="fa fa-money"/>
+			<span>Retiro</span>
+		</span>
+	</t>
+	
+	<t t-name="CashInOutStatementButton" owl="1">
+		<span class="control-button">
+			<i class="fa fa-print"/>
+			<span>Mov Efec</span>
+		</span>
+	</t>
+
+	<!-- CashInPopup -->
+	<t t-name="CashInPopup" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup">
+					<header class="title drag-handle">
+						Ingresar Efectivo
+					</header>
+					<main class="body" style="font-family: 'Lato-Reg';">
+						<div style="margin-bottom: 10px;">
+							<span id="error1" class="alert error1">
+								Ingrese monto a ingresar
+							</span>
+						</div>
+						<table  class="popup-table">
+							<tr>
+								<td> Importe: </td>
+								<td>
+									<input id="cash_amount" type="text" class="input-field" required="required" name="amount"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Razon:</td>
+								<td><input rows="3" id="inreason" type="text" class="input-field" name="name"/></td>
+							</tr>
+						</table>
+					</main>
+					<footer class="footer">
+						<div class="button cancel" t-on-click="cancel">
+							Cancelar
+						</div>
+						<div class="button cancel" t-on-click="cash_in">
+							Ingresar Efectivo
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+
+	<!-- CashOutPopup -->
+	<t t-name="CashOutPopup" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup">
+					<header class="title drag-handle">
+						Retirar Efectivo
+					</header>
+					<main class="body" style="font-family: 'Lato-Reg';">
+						<div style="margin-bottom: 10px;">
+							<span id="error1" class="alert error1">
+								Ingrese el monto a retirar
+							</span>
+						</div>
+						<table  class="popup-table">
+							<tr>
+								<td> Actual: </td>
+								<td>$<t t-esc="Math.abs(env.pos.cash_register_difference)"/></td>
+							</tr>
+							<tr>
+								<td> Importe: </td>
+								<td><input id="amount" type="text" class="input-field" required="required" name="amount"/></td>
+							</tr>
+							<tr>
+								<td>Razon:</td>
+								<td><input rows="3" id="reason" type="text" class="input-field" name="name"/></td>
+							</tr>
+						</table>
+					</main>
+					<footer class="footer">
+						<div class="button cancel" t-on-click="cancel">
+							Cancelar
+						</div>
+						<div class="button cancel" t-on-click="cash_out">
+							Retirar Efectivo
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+
+	<t t-name="CashOutPopupAlert" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup">
+					<header class="title drag-handle">
+						Alerta de Retiro Efectivo
+					</header>
+					<main class="body" style="font-family: 'Lato-Reg';">
+						<div style="margin-bottom: 10px;">
+							<span id="error1" class="alert error1">
+								Ingrese el monto a retirar
+							</span>
+						</div>
+						<table  class="popup-table">
+							<tr>
+								<td>El efectivo en Caja es:</td>
+								<td>$<t t-esc="Math.abs(env.pos.cash_register_difference)"/></td>
+							</tr>
+							<tr>
+								<td>El maximo permitido es:</td>
+								<td>$<t t-esc="Math.abs(env.pos.config.cash_threshold)"/></td>
+							</tr>
+							<tr>
+								<td>Retirar a caja de seguridad:</td>
+								<td><input id="amount" type="text" class="input-field" required="required" name="amount"/></td>
+							</tr>
+						</table>
+					</main>
+					<footer class="footer">
+						<div class="button cancel" t-on-click="cash_out">
+							Retirar Efectivo
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+
+	<t t-name="CashInOutReceiptScreen" owl="1">
+		<div class="receipt-screen screen holos-theme-color">
+			<div class="screen-content">
+				<div class="top-content">
+					<span class="button back" t-on-click="back">
+						<i class="fa fa-angle-double-left"/>
+						<span> </span>
+						<span>Volver</span>
+					</span>
+				</div>
+				<div class="centered-content">
+                    <br/><br/>
+					<div class="button print" t-on-click="printReceipt">
+                        <i class="fa fa-print"></i>
+                        <span> </span>
+                        <span>Imprimir</span>
+                    </div>
+					<br/><br/><br/><br/>
+                    <div class="pos-cash-receipt-container">
+                        <CashInOutReceipt
+							date="props.date"
+							operation="props.operation"
+							amount="props.amount"
+							purpose="props.purpose"
+						/>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="CashInOutReceipt" owl="1">
+		<div class="pos-receipt-container">
+			<div >
+				<t t-esc="env.pos.config.name"/><br />
+				<div class="receipt-user">
+					Fecha: <t t-esc="props.date"/><br />
+				</div>
+				<div class="receipt-user">
+					Cajero: <t t-esc="env.pos.get_cashier().name"/><br />
+				</div>
+				<div class="receipt-user">
+					Operacion: <t t-esc="props.operation"/><br />
+				</div>
+				<div class="receipt-user">
+					Motivo: <t t-esc="props.purpose || ''"/><br />
+				</div>
+				<div class="receipt-user">
+					Importe: <t t-esc="props.amount || ''"/><br />
+				</div>
+				<br/><br/><br/><br/><br/><br/>
+				<div style="margin-top:70px;text-align: center;">
+				<p style="border-top: 2px dashed black;"/>
+				<b><span>Firma</span></b>
+			</div>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="CashInOutStatementPopup" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup">
+					<header class="title drag-handle">
+						Imprimir Movimientos
+					</header>
+					<main class="body" style="font-family: 'Lato-Reg';">
+						<div style="margin-bottom: 10px;">
+							<span id="statement_error" class="alert error1">
+								Please enter amount to withdraw
+							</span>
+						</div>
+						<table  class="popup-table">
+							<tr>
+								<td>Cajero:</td>
+								<td>
+									<select id="cashier" class="cashier-selection">
+										<option t-att-value='env.pos.user.id'>
+											<t t-esc='env.pos.user.name'/>
+										</option>
+									</select>
+								</td>
+							</tr>		
+							<tr>
+								<td>Fecha Inicio: </td>
+								<td><input type="date"  name="st_date" id="stmt_st_date"/></td>
+							</tr>
+							<tr>
+								<td>Fecha Fin:</td>
+								<td><input type="date" name="ed_date" id="stmt_end_date"/></td>
+							</tr>
+						</table>
+					</main>
+					<footer class="footer">
+						<div class="button cancel" t-on-click="cancel">
+							Cancelar
+						</div>
+						<div class="button cancel" t-on-click="print_cash_in_out_statement">
+							Imprimir
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+	
+	<t t-name="StatementReportScreen" owl="1">
+		<div class="receipt-screen screen">
+			<div class="screen-content">
+				<div class="top-content">
+					<span class="button back" t-on-click="back">
+						<i class="fa fa-angle-double-left"/>
+						<span> </span>
+						<span>Volver</span>
+					</span>
+					<div class="top-content-center">
+						<h1> Imprimir</h1>
+					</div>
+				</div>
+				<div class="centered-content touch-scrollable">
+					<div class="button print" t-on-click="printReceipt">
+						<i class="fa fa-print"/>
+						<span>Imprimir</span>
+					</div>
+					<div class="pos-statement-receipt-container">
+						<StatementSummaryReceipt
+							statement_data = "props.statement_data"
+							stmt_st_date = "props.stmt_st_date"
+							stmt_end_date =  "props.stmt_end_date"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</t>
+
+	<t t-name="StatementSummaryReceipt" owl="1">
+		<div class="pos-receipt-container">
+			<div class="pos-center-align" style="text-align: center;">
+
+				<div class="receipt-user">
+					Usuario: <t t-esc="env.pos.get_cashier().name"/><br />
+				</div>
+				<br />
+				<t t-if="!order_current_session">
+					<div class="receipt-periods" style="width: 301px;">
+						Fecha Inicio: <span t-esc="props.stmt_st_date"/><br/>
+						Fecha Fin: <span t-esc="props.stmt_end_date"/>
+					</div>
+				</t>
+				<br/>
+				<table class='pos-center-align' style="margin-top: 10px;width: 100% !important;">
+					<colgroup>
+						<col width='30%' />
+						<col width='30%' />
+						<col width='30%' />
+					</colgroup>
+					<thead>
+						<tr style="border-bottom: 2px solid black;">
+							<th>Fecha</th>
+							<th class="pos-center-align">Ingresos</th>
+							<th class="pos-right-align">Retiros</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr t-foreach="props.statement_data[2]" t-as="summery1">
+							<td>
+								<t t-esc="summery1.create_date"/>
+							</td>
+<!--							<td>-->
+<!--								<t t-esc="summery1.date"/>-->
+<!--							</td>-->
+							<td class="pos-center-align">
+								<t t-esc="summery1.credit"/>
+							</td>
+							<td class="pos-right-align">
+								<t t-esc="summery1.debit"/>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-top: 10px;"><b> Total:</b></td>
+							<td style="padding-top: 10px;" class="pos-center-align">
+								<b><t t-esc="props.statement_data[3]"/></b></td>
+							<td  style="padding-top: 10px;" class="pos-right-align">
+								<b><t t-esc="props.statement_data[4]"/></b></td>
+						</tr>
+					</tbody>
+				</table>
+				<br />
+				<br/>
+				<div style="margin-top:70px;text-align: center;">
+					<p style="border-top: 2px dashed black;"/>
+					<b><span>Firma</span></b>
+				</div>
+			</div>
+					
+		</div>
+	</t>
+	
+</templates>
+
+

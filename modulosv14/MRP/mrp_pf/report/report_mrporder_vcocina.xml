@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+        <template id="report_mrporder_vcocina">
+          <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+              <style>
+                  .table td, tr {
+                    font-size: 10px;
+                    padding: 2px 2px;
+                  }
+                  .table th {
+                    background-color: lightgray;
+                    font-size: 10px;
+                    padding: 2px 2px;
+                  }
+              </style>
+              <h5>VALE DIARIO DE COCINA - FECHA: <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')" t-options="{'widget': 'date'}" class="m-0"/></h5>
+
+                <t t-foreach="docs" t-as="o">
+                  <div class="float-left">
+                    <table style="border-collapse: collapse; width: 100%;" class="table table-bordered" t-if="o.move_raw_ids">
+                      <thead>
+                        <tr>
+                          <th><span t-field="o.product_id.name"/></th>
+                          <th><span t-esc="'{0:,.2f}'.format(o.product_qty)"/> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-if="o.move_raw_ids">
+                          <tr t-foreach="o.move_raw_ids" t-as="raw_line">
+                            <td style="font-size: 10px; padding: 2px 2px;"><span t-field="raw_line.product_id.name"/></td>
+                            <td style="font-size: 10px; padding: 2px 2px;"><span t-esc="raw_line.product_uom_qty"/><span t-field="raw_line.product_uom" groups="uom.group_uom"/></td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </t>
+
+                <div class="float-center">
+                <table style="border-collapse: collapse; width: 100%;" class="table table-bordered">
+                  <tr>
+                    <th rowspan="1" colspan="10">CONCENTRADO</th>
+                  </tr>
+                  <tbody>
+                    <t t-foreach="docs" t-as="o">
+                      <t t-foreach="o.mrp_production_call()" t-as="line">
+                        <tr>
+                         <t t-if="line['sequence_in_bom_mrp'] == '1'">
+                         <td class="text-left"><span t-esc="line['name']"/></td>
+                         <td class="text-left"><span t-esc="line['total']"/></td>
+                         </t>
+                         <t t-if="line['sequence_in_bom_mrp'] == '2'">
+                         <td class="text-left"><span t-esc="line['name']"/></td>
+                         <td class="text-left"><span t-esc="line['total']"/></td>
+                         </t>
+                        </tr>
+                      </t>
+                    </t>
+                  </tbody>
+                </table>
+                </div>
+                <div class="float-center">
+                <table style="border-collapse: collapse; width: 100%;" class="table table-bordered">
+                  <tr>
+                    <th rowspan="1" colspan="10">VERDURAS</th>
+                  </tr>
+                  <tbody>
+                    <t t-foreach="docs" t-as="o">
+                      <t t-foreach="o.mrp_production_call()" t-as="line">
+                        <tr>
+                         <t t-if="line['sequence_in_bom_mrp'] == 'V1'">
+                         <td class="text-left"><span t-esc="line['name']"/></td>
+                         <td class="text-left"><span t-esc="line['total']"/></td>
+                         </t>
+                         <t t-if="line['sequence_in_bom_mrp'] == 'V2'">
+                         <td class="text-left"><span t-esc="line['name']"/></td>
+                         <td class="text-left"><span t-esc="line['total']"/></td>
+                         </t>
+                        </tr>
+                      </t>
+                    </t>
+                  </tbody>
+                </table>
+                </div>
+
+            </t>
+          </t>
+        </template>
+  </data>
+
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="partner_statement_holos.activity_statement_holos_document">
+        <t t-call="web.internal_layout">
+            <style>
+            th, td {
+              color:#000000; font-size: 14px;
+              line-height: 0.5;
+              text-align:center;
+              font-weight: bold;
+            }
+            </style>
+            <t t-set="o" t-value="o.with_context({'lang': lang})" />
+            <div class="page">
+                <h5>Estado de Cuenta</h5>
+                <h6>Cliente: <span t-field="o.ref"/> - <span t-field="o.name"/></h6>
+                <h6>Fecha: <span t-esc="d['today']"/></h6>
+                <t t-if="d['currencies']">
+                    <br/>
+                    <t t-foreach="d['currencies'].items()" t-as="currency">
+                        <t t-set="display_currency" t-value="Currencies[currency[0]]" />
+                        <t t-set="currency" t-value="currency[1]" />
+                            <span t-esc="d['start']"/> - <span t-esc="d['end']" /> en <span t-esc="display_currency.name"/>
+                        <table class="table table-condensed table-statement">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Folio</th>
+                                    <th>Diario</th>
+                                    <th class="amount">Cargos</th>
+                                    <th class="amount">Abonos</th>
+                                    <th class="amount">Saldo</th>
+                                    <th class="amount">Vence</th>
+<!--                                    <th class="amount">T.C.</th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_cargos" t-value="0"/>
+                                <t t-set="total_abonos" t-value="0"/>
+                                <tr style="font-weight: bold;">
+                                    <td><span t-esc="d['start']"/></td>
+                                    <td/>
+                                    <td>Saldo Inicial</td>
+                                    <td/>
+                                    <td/>
+                                    <td class="amount">
+                                        <span t-esc="currency['balance_forward']" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <tr t-foreach="currency['lines']" t-as="line" t-att-class="'statement-blocked' if line['blocked'] else ''">
+                                    <td class="date_format"><span t-esc="line['date']"/></td>
+                                    <td><span t-esc="line['move_id']"/></td>
+                                    <td><span t-esc="line['journal']"/></td>
+                                    <t t-if="line['amount'] &gt; 0">
+                                        <td class="amount">
+                                            <span t-esc="line['amount']" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                        </td>
+                                        <td/>
+                                        <td class="amount">
+                                            <span t-esc="line['amount_residual']" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                        </td>
+                                        <td class="date_format">
+                                            <span t-esc="line['date_maturity']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="line['amount'] &lt; 0">
+                                        <td/>
+                                        <td class="amount">
+                                           <span t-esc="line['amount']" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                        </td>
+                                        <td/>
+                                        <td/>
+                                    </t>
+                                    <t t-if="line['amount'] &gt; 0">
+                                        <t t-set="total_cargos" t-value="total_cargos + line['amount']"/>
+                                    </t>
+                                    <t t-if="line['amount'] &lt; 0">
+                                        <t t-set="total_abonos" t-value="total_abonos + line['amount']"/>
+                                    </t>
+                                </tr>
+                            </tbody>
+                            <tfooter>
+                                <tr>
+                                    <td><span t-esc="d['end']"/></td>
+                                    <td/>
+                                    <td>Saldo Final</td>
+                                    <td class="amount">
+                                        <span t-esc="total_cargos" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                    </td>
+                                    <td class="amount">
+                                        <span t-esc="total_abonos" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                    </td>
+                                    <td class="amount">
+                                        <span t-esc="currency['amount_due']" t-options="{'widget': 'monetary', 'display_currency': display_currency}"/>
+                                    </td>
+                                </tr>
+                            </tfooter>
+                        </table>
+                        <t t-call="partner_statement_holos.aging_buckets_holos" t-if="currency['buckets']"/>
+                    </t>
+                </t>
+
+                <p t-if="d.get('no_entries')">
+                    <strong>Este cliente no tiene facturas vencidas</strong>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="activity_statement_holos">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="d" t-value="data.get(o.id)" />
+                <t t-call="partner_statement_holos.activity_statement_holos_document" t-lang="o.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_print_activity_statement_holos" model="ir.actions.report">
+        <field name="name">Estado de Cuenta Cliente</field>
+        <field name="model">res.partner</field>
+        <field name="report_name">partner_statement_holos.activity_statement_holos</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_file">partner_statement_holos.activity_statement_holos</field>
+    </record>
+    <record id="action_print_activity_statement_holos_html" model="ir.actions.report">
+        <field name="name">Estado de Cuenta Cliente</field>
+        <field name="model">res.partner</field>
+        <field name="report_name">partner_statement_holos.activity_statement_holos</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_file">partner_statement_holos.activity_statement_holos</field>
+    </record>
+    <record id="action_print_activity_statement_holos_xlsx" model="ir.actions.report">
+        <field name="name">Estado de Cuenta Cliente XLSX</field>
+        <field name="model">res.partner</field>
+        <field name="type">ir.actions.report</field>
+        <field name="report_name">p_s.report_activity_statement_holos_xlsx</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_file">report_activity_statement_holos</field>
+    </record>
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Purchase Template Views -->
+        <record id="purchase_order_template_view_form" model="ir.ui.view">
+            <field name="name">purchase.order.template.form</field>
+            <field name="model">purchase.order.template</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Template">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Template Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group colspan="4" col="4">
+                               <field name="vendor_ids" widget="many2many_tags" required="0" colspan ="2"/>
+                                <field name="active" colspan ="2"/>
+                            </group>
+                        </group>
+                        <notebook name="main_book">
+                            <page string="Lines">
+                                <field name="po_template_line_ids" widget="section_and_note_one2many">
+                                    <tree string="Purchase Template Lines" editable="bottom">
+                                        <control>
+                                            <create name="add_product_control" string="Add a product"/>
+                                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="display_type" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="name" widget="section_and_note_text"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                        <field
+                                            name="product_uom_id"
+                                            groups="uom.group_uom"
+                                            attrs="{'required': [('display_type', '=', False)]}"
+                                        />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="note" nolabel="1" placeholder="You can set default Terms &amp; Conditions"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="purchase_order_template_view_tree" model="ir.ui.view">
+            <field name="name">purchase.order.template.tree</field>
+            <field name="model">purchase.order.template</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Template">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_order_template_action" model="ir.actions.act_window">
+            <field name="name">Purchase Templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your purchase template
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="purchase_order_template_menu" action="purchase_order_template_action" parent="purchase.menu_purchase_config" sequence="1" name="Purchase Templates"/>
+
+        <!-- Purchase Order Inherit -->
+        <record id="purchase_order_form_inherit_purchase_template" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="po_template_id" domain="['|',('vendor_ids','=',False),('vendor_ids','in',partner_id)]" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

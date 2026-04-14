@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <menuitem id="holos_appointment_menu" name="Citas" sequence="2"
+              web_icon="holos_appointment,static/description/icon.png"/>
+
+    <menuitem id="holos_appointment_menu_calendar" name="Citas" sequence="10" action="calendar.action_calendar_event"
+              parent="holos_appointment_menu"/>
+
+    <menuitem id="menu_appointment_type" name="Appointment Type" action="holos_appointment.action_appointment_type"
+              parent="holos_appointment_menu" sequence="30"/>
+
+    <menuitem id="menu_appointment_resource" name="Appointment Resource" action="holos_appointment.action_appointment_resource"
+              parent="holos_appointment_menu" sequence="40"/>
+
+</odoo>

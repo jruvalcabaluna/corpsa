@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ListFeaturesButtonsGlobalDiscountDate" t-inherit="pos_retail.ListFeaturesButtons"
+       t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('fa fa-sort-amount-desc')]" position="before">
+
+<!-- t-if="env.pos.config.discount and env.pos.config.discount_ids.length != 0"-->
+            <span t-if="env.pos.config.discount_date and env.pos.config.discount_date_ids.length != 0"
+                    t-on-click="setGlobalDiscountDate"
+                    title="Set Global Date Discount"
+                    class="control-button">
+                <i class="fa fa-sort-amount-desc"/>
+                <span class="button-label">Global Date Disc</span>
+            </span>
+
+        </xpath>
+    </t>
+
+</templates>

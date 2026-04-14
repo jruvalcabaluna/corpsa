@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ProductAttribute" owl="1">
+        <article class="product" t-att-class="{'item-selected' : product.selected }" tabindex="0" t-on-click="trigger('click-product', {product: product})" t-key="product.id">
+            <div class="combo-item-product-img-big" style="margin-top: 40px">
+                <img class='combo-item-product_list_image' t-att-src="env.pos.get_image_url_by_model('product.product', product)"/>
+            </div>
+        </article>
+    </t>
+
+</templates>

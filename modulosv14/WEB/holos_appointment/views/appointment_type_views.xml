@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_appointment_type_tree" model="ir.ui.view">
+        <field name="name">appointment.type.tree</field>
+        <field name="model">appointment.type</field>
+        <field name="arch" type="xml">
+            <tree string="Appointment Types" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_appointment_type" model="ir.actions.act_window">
+        <field name="name">Appointment Types</field>
+        <field name="res_model">appointment.type</field>
+        <field name="view_id" ref="view_appointment_type_tree"/>
+    </record>
+
+</odoo>
+
+

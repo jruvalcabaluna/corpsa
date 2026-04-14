@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_purchase_disable_on_time_rate_inherit" model="ir.ui.view">
+            <field name="name">res.partner.purchase.disable.on.time.rate.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='purchase']" position="inside">
+                    <field name="disable_on_time_rate"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>

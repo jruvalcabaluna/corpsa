@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_invoice_report_ad_tree_info" model="ir.ui.view">
+        <field name="name">account.invoice.report.ad.tree.info</field>
+        <field name="model">account.invoice.report</field>
+        <field name="arch" type="xml">
+            <tree string="Lineas de Factura" create="false" delete="false">
+
+                <field name="invoice_date" string="Fecha" optional="show"/>
+                <field name="move_id" string="Factura" optional="show"/>
+                 <field name="partner_id" string="Cliente" optional="show"/>
+                 <field name="invoice_user_id" string="Comercial" optional="show"/>
+                <field name="product_id" optional="show"/>
+                <field name="product_brand_id" string="Marca" optional="show"/>
+                <field name="quantity" string="Cant." sum="Cantidad" widget="float" decoration-bf="1" optional="show"/>
+                <field name="price_unit" string="Precio U." optional="show"/>
+                 <field name="discount" string="% Desc." optional="show"/>
+                <field name="price_subtotal" string="Neto" sum="Subtotal" widget="monetary" decoration-bf="1" optional="show"/>
+
+                 <field name="product_categ_id" string="Categoria" optional="show"/>
+                <field name="move_type" string="Tipo Documento" optional="show"/>
+                <field name="state" string="Status" optional="show"/>
+                <field name="company_currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_account_invoice_report_ad_search" model="ir.ui.view">
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search" />
+        <field name="arch" type="xml">
+            <field name="product_categ_id" position="after">
+                <separator />
+                <filter name="without_price" string="Without Price" domain="[('price_average','=', 0.0)]"/>
+                <filter name="with_price" string="With Price" domain="[('price_average','!=', 0.0)]"/>
+            </field>
+        </field>
+    </record>
+    <record id="action_account_invoice_line_report_ad" model="ir.actions.act_window">
+        <field name="name">Líneas de Factura</field>
+        <field name="res_model">account.invoice.report</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_account_invoice_report_ad_search" />
+        <field name="help">
+            From this report, you can have an overview of the amount invoiced to your customers.
+            The search tool can also be used to personalise your Invoices reports and so, match this analysis to your needs.
+        </field>
+    </record>
+    <menuitem action="action_account_invoice_line_report_ad" id="menu_action_account_invoice_line_report" parent="account.account_reports_management_menu" sequence="25"/>
+</odoo>

@@ -1,0 +1,35 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+.size_char_image_div img{
+
+  display: block !important;
+  margin: 0 auto !important;
+
+}
+#modal_product_size_chart.modal-body{
+  padding: 2%;
+}
+.modal_product_size_chart_label
+{
+    font-family: 'Opensans' Sans-serif;
+     font-weight: 400;
+    color: #252525;
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+#modal_product_size_chart .modal-body{
+  padding:5%;
+}
+
+#modal_product_size_chart .modal-content{
+   border-radius : 10px;
+
+}
+
+.icon-cross{
+
+    background:  url("/website_product_size_chart/static/src/img/icon-cross.png") no-repeat ;
+    padding-left: 18px;
+    height: 20px;
+
+}

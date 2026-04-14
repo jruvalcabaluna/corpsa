@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_pos_session_form" model="ir.ui.view">
+        <field name="name">inherit.view.pos.session.form</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='move_id']" position="before">
+                <field name="global_invoice_id" readonly="1" groups="account.group_account_user"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="inherit_view_pos_session_tree" model="ir.ui.view">
+        <field name="name">inherit.view.pos.session.tree</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="has_global_invoice"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="action_create_global_invoice" model="ir.actions.server">
+        <field name="name">Create global invoice</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="binding_view_types">list</field>
+        <field name="code">action = model.create_manual_global_invoice(records)</field>
+    </record>
+
+    <record id="pos_session_global_wizard_form_view" model="ir.ui.view">
+            <field name="name">pos.session.global.wizard.form.view</field>
+            <field name="model">pos.session.global.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Crear factura global">
+                    <footer>
+                        <button name="action_process_global_invoices" string="Crear factura" type="object" class="oe_highlight"/> 
+                        <button string="Cancelar" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+
+        <act_window id="action_global_invoice" 
+            name="Crear factura global" 
+            res_model="pos.session.global.wizard" 
+            binding_model="pos.session" 
+            view_mode="form" 
+            target="new" 
+            binding_views="list,form" />
+
+</odoo>

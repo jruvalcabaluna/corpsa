@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_payment_tipo_form" model="ir.ui.view">
+        <field name="name">account.payment.tipo.form</field>
+        <field name="model">account.payment.tipo</field>
+        <field name="arch" type="xml">
+            <form string="Payment Tipo">
+                <group name="main">
+                    <field name="name" />
+                    <field name="percentage" />
+                    <field name="fixed_journal_id" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_payment_tipo_tree" model="ir.ui.view">
+        <field name="name">account.payment.tipo.tree</field>
+        <field name="model">account.payment.tipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="percentage" />
+                <field name="fixed_journal_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_payment_tipo_search" model="ir.ui.view">
+        <field name="name">account.payment.tipo.search</field>
+        <field name="model">account.payment.tipo</field>
+        <field name="arch" type="xml">
+            <search string="Search Payment Tipos">
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="account_payment_tipo_action" model="ir.actions.act_window">
+        <field name="name">Payment Tipos</field>
+        <field name="res_model">account.payment.tipo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="account_payment_tipo_menu" action="account_payment_tipo_action" parent="account.account_management_menu" sequence="25"/>
+</odoo>

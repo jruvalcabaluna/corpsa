@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//section[hasclass('payment-numpad')]" position="replace"/>
+        <xpath expr="//div[hasclass('payment-buttons-container')]" position="after">
+            <div class="payment-notes" style="margin: 12px; margin-bottom: 0px" t-if="env.pos.config.note_order">
+                <textarea class="form-control orderline-input"
+                          style="width: 94%"
+                          rows="4"
+                          cols="50"
+                          type="text"
+                          placeholder="Type A Notes"
+                          t-on-change="OnChangeNote"
+                >
+                    <t t-esc="currentOrder.get_note()"/>
+                </textarea>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('back')]" position="after">
+            <div class="button remove_payments"
+                 t-on-click="removePayments">
+                <i class="fa fa-trash"></i>
+                <span class="back_text"> Clear Payments</span>
+                <span t-if="env.isShowKeyBoard">
+                    <i class="fa fa-keyboard-o"/>
+                    ( C )
+                </span>
+            </div>
+            <div class="button"
+                 t-on-click="showAllPaymentMethods">
+                <i class="fa fa-list"></i>
+                <span class="back_text"> <t t-esc="showAllPaymentMethodLabel"/></span>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-buttons')]/div[1]" position="before">
+            <section class="payment-numpad">
+                <PaymentScreenNumpad />
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+            <div class="customer-button">
+                <div class="button"
+                     t-att-class="{ highlight: true }"
+                     t-on-click="scanVoucher">
+                    <i class="fa fa-file-text-o"/>
+                    Add Voucher
+                </div>
+            </div>
+            <t t-if="env.pos.rewards">
+                <div class="customer-button">
+                    <div class="button"
+                         t-att-class="{ highlight: true }"
+                         t-on-click="selectLoyaltyReward">
+                        <i class="fa fa-file-text-o"/>
+                        Loyalty Reward
+                    </div>
+                </div>
+            </t>
+            <t t-if="env.pos.config.wallet">
+                <div class="customer-button"
+                     t-att-class="{ oe_hidden: currentOrder.get_change() &lt;= 0, highlight:  currentOrder.get_change() &gt; 0}">
+                    <div class="button"
+                         t-on-click="saveToWallet">
+                        <i class="fa fa-file-text-o"/>
+                        Save Change to Wallet
+                    </div>
+                </div>
+            </t>
+            <t t-if="env.pos.config.wallet">
+                <div class="customer-button">
+                    <div class="button"
+                         t-att-class="{ oe_hidden: !customerHasWallet, highlight: customerHasWallet}"
+                         t-on-click="useWalletPaid">
+                        <i class="fa fa-file-text-o"/>
+                        Use Wallet Paid
+                    </div>
+                </div>
+            </t>
+            <div class="customer-button">
+                <div class="button"
+                     t-att-class="{ oe_hidden: !customerHasCredit, highlight: customerHasCredit}"
+                     t-on-click="useCreditPaid">
+                    <i class="fa fa-file-text-o"/>
+                    Use Credit Paid
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('paymentmethods')]" position="after">
+            <span class="label" t-if="env.pos.payment_journals and !env.isMobile" style="margin-left: 20px; font-weight: 900">Invoice Journal will save</span>
+            <div class="paymentmethods" t-if="env.pos.payment_journals">
+                <t t-foreach="env.pos.payment_journals" t-as="payment_journal"
+                   t-key="payment_journal.id">
+                    <PaymentInvoiceJournal paymentInvoiceJournal="payment_journal"/>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-buttons')]" position="after">
+            <div class="paymentmethods payment-coins" t-if="env.pos.payment_coins">
+                <t t-foreach="env.pos.payment_coins" t-as="coin"
+                   t-key="coin.id">
+                    <PaymentCoin paymentCoin="coin"/>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('paymentmethods')]" position="replace">
+            <div class="paymentmethods">
+                <span t-if="!env.isMobile" style="padding-bottom: 20px; font-weight: 900" class="label">Payment Methods</span>
+                <t t-foreach="PaymentMethods"
+                   t-as="paymentMethod"
+                   t-key="paymentMethod.id">
+                    <PaymentMethodButton paymentMethod="paymentMethod"/>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('next')]" position="after">
+            <span t-if="env.isShowKeyBoard">
+                <i class="fa fa-keyboard-o"/>
+                ( Enter/Arrow Right )
+            </span>
+        </xpath>
+        <xpath expr="//div[hasclass('back')]" position="after">
+            <span t-if="env.isShowKeyBoard">
+                <i class="fa fa-keyboard-o"/>
+                ( B/ESC )
+            </span>
+        </xpath>
+    </t>
+
+</templates>

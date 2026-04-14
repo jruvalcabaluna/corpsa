@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_purchase_order_form_inherit_salos" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.salos</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="account_analytic_id" required="1"/>
+                </xpath>
+            <xpath expr="//field[@name='order_line']//field[@name='account_analytic_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="replace">
+            <ul class="info-list" t-if="props.line.selected">
+                <i t-on-click.stop="showBundlePackItems"
+                   class="oe_link_icon fa fa-list oe_icon line-icon"
+                   t-att-class="{'oe_hidden': !isBundlePackProduct,}"
+                   aria-label="Set Bundle Pack Items"
+                   role="img"
+                   title="Set Bundle Pack Items"
+                />
+                <i t-on-click.stop="editBundlePackItems"
+                   class="oe_link_icon fa fa-list oe_icon line-icon"
+                   t-att-class="{'oe_hidden': !isBundlePackProduct,}"
+                   aria-label="Change Quantities of Bundle Pack Items"
+                   role="img"
+                   title="Change Quantities of Bundle Pack Items"
+                />
+            </ul>
+            <div class="line_extend" t-if="!env.session.restaurant_order and !env.isMobile and props.line.selected">
+                <t t-if="props.line.combo_items and props.line.combo_items.length > 0">
+                    <li class='info info-label'>
+                        Combo Bundle/Package:
+                    </li>
+                    <t t-foreach="props.line.combo_items" t-as="combo_item" t-key="combo_item.product_id[0]">
+                        <t t-if="combo_item.quantity > 0">
+                            <li class='info'>
+                                + <t t-esc="combo_item.quantity * props.line['quantity']"/>
+                                <span> </span>
+                                <t t-esc="env.pos.generate_wrapped_name(combo_item.product_id[1])[0]"/>
+<!--                                <t t-if="combo_item.lot_number">-->
+<!--                                    Lot/Serial number : <t t-esc="combo_item.lot_number"/>-->
+<!--                                </t>-->
+<!--                                <t t-if="combo_item.use_date">-->
+<!--                                    Expired Date of Lot: <t t-esc="combo_item.use_date"/>-->
+<!--                                </t>-->
+                                <t t-if="combo_item.price_extra">
+                                    Price Extra: <t t-esc="env.pos.format_currency_no_symbol(combo_item.price_extra)"/>
+                                </t>
+                            </li>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

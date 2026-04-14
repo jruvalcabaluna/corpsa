@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="wk_size_chart_category" model="product.category">
+            <field name="name">Test  SIZE Chart</field>
+        </record>
+
+         <record id="wk_product_uom_categ__size_chart" model="uom.uom">
+            <field name="category_id" ref="uom.product_uom_categ_unit"/>
+            <field name="name">Test  SIZE Chart</field>
+            <field eval="1.0" name="factor"/>
+            <field eval="4.0" name="rounding"/>
+			 <field name="uom_type">smaller</field>
+        </record>
+
+    	<record id="wk_jeans" model="product.product">
+            <field name="name">Jockey Jeans</field>
+            <field name="categ_id" ref="wk_size_chart_category"/>
+            <field name="standard_price">18</field>
+            <field name="list_price">12.50</field>
+            <field name="uom_id" ref="wk_product_uom_categ__size_chart"/>
+            <field name="uom_po_id" ref="wk_product_uom_categ__size_chart"/>
+			<field name="image_1920" type="base64" file="website_product_size_chart/static/src/img/jeans.png"/>
+        </record>
+
+        <record id="wk_short" model="product.product">
+            <field name="name">Adidas Short</field>
+            <field name="categ_id" ref="wk_size_chart_category"/>
+            <field name="standard_price">18</field>
+            <field name="list_price">12.50</field>
+            <field name="uom_id" ref="wk_product_uom_categ__size_chart"/>
+            <field name="uom_po_id" ref="wk_product_uom_categ__size_chart"/>
+			<field name="image_1920" type="base64" file="website_product_size_chart/static/src/img/short.png"/>
+        </record>
+        <record id="wk_sweatshirt" model="product.product">
+            <field name="name">Woodland sweatshirt</field>
+            <field name="categ_id" ref="wk_size_chart_category"/>
+            <field name="standard_price">18</field>
+            <field name="list_price">12.50</field>
+            <field name="uom_id" ref="wk_product_uom_categ__size_chart"/>
+            <field name="uom_po_id" ref="wk_product_uom_categ__size_chart"/>
+			<field name="image_1920" type="base64" file="website_product_size_chart/static/src/img/sweatshirt.png"/>
+        </record>
+        <record id="wk_top" model="product.product">
+            <field name="name">Top</field>
+            <field name="categ_id" ref="wk_size_chart_category"/>
+            <field name="standard_price">18</field>
+            <field name="list_price">12.50</field>
+            <field name="uom_id" ref="wk_product_uom_categ__size_chart"/>
+            <field name="uom_po_id" ref="wk_product_uom_categ__size_chart"/>
+			<field name="image_1920" type="base64" file="website_product_size_chart/static/src/img/Top.png"/>
+        </record>
+    	
+	  <record id="website_size_chart_sweatshirt" model="website.size.chart">            
+            <field name="name">Size Conversion Chart For Full Sleeve Sweatshirt</field>           
+         	<field name="row" >7</field>   
+         	<field name="col" >6</field>     
+         	<field name="chart_info"  type="html">
+				<table class="table">
+				<thead>
+					<tr><th>Sizes</th><th>Chest</th><th>Neck</th>
+					<th>Shoulder</th><th>Sleeve</th><th>Length</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>XS</td><td>36</td><td>7.25</td><td>17</td><td>24</td><td>23</td></tr>
+					<tr><td>S</td><td>38</td><td>7.5</td><td>17.75</td><td>24.5</td><td>25</td></tr>
+					<tr><td>M</td><td>40</td><td>7.75</td><td>18.5</td><td>25</td><td>26</td></tr>
+					<tr><td>L</td><td>42</td><td>8</td><td>19.25</td><td>25.5</td><td>28</td></tr>
+					<tr><td>XL</td><td>44</td><td>8.25</td><td>20</td><td>26</td><td>29</td></tr>
+					<tr><td>XXL</td><td>46</td><td>8.5</td><td>20.75</td><td>26.5</td><td>30</td></tr>
+				</tbody>
+				</table>
+			</field>
+ 	    	<field name="measure_info"  type="html">
+				<p><b>Sleeve  </b>Measure from the shoulder seam through the outer arm to the cuff / hem.</p>
+				<p><b>Neck Width  </b>Measured horizontally across the neck.</p>
+				<p><b>Shoulder  </b>Measure the shoulder at the back, from edge to edge with arms relaxed on both sides.</p>
+				<p><b>Length  </b>Measure from the highest point of the shoulder seam to the bottom hem of the garment's.</p>
+				<p><b>Chest  </b>Measure around the body under the arms at the fullest part of the chest with your arms relaxed at both sides.</p>
+			</field>         	
+         	<field name="link_text" >Size Conversion</field>         	
+         	<field name="image" type="base64" file="website_product_size_chart/static/src/img/sweatshirt.jpg"></field>
+         	<field name="product_tmpl_ids" eval="[(6,0,[ref('wk_sweatshirt_product_template')])]"/>             
+        </record>
+        <!-- ######################################################################################################### -->
+        <record id="website_size_chart_sleeveless" model="website.size.chart">            
+            <field name="name">Size Measurement Chart For Sweatshirt</field>           
+         	<field name="row" >12</field>   
+         	<field name="col" >5</field>     
+         	<field name="chart_info"  type="html">
+				<table class="table">
+				<thead>
+					<tr><th>Sizes</th><th>Bust(Inches)</th><th>Euro Size</th>
+					<th>UK Size</th><th>US Size</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>XXS</td><td>30</td><td>32</td><td>4</td><td>1</td></tr>
+					<tr><td>XS</td><td>31</td><td>34</td><td>6</td><td>2</td></tr>
+					<tr><td>S</td><td>32</td><td>36</td><td>8</td><td>4</td></tr>
+					<tr><td>M</td><td>34</td><td>38</td><td>10</td><td>6</td></tr>
+					<tr><td>L</td><td>36</td><td>40</td><td>12</td><td>8</td></tr>
+					<tr><td>XL</td><td>38</td><td>42</td><td>14</td><td>10</td></tr>
+					<tr><td>XXL</td><td>40</td><td>44</td><td>16</td><td>12</td></tr>
+					<tr><td>3XL</td><td>42</td><td>46</td><td>18</td><td>14</td></tr>
+					<tr><td>4XL</td><td>44</td><td>48</td><td>20</td><td>16</td></tr>
+					<tr><td>5XL</td><td>46</td><td>50</td><td>22</td><td>18</td></tr>
+					<tr><td>6XL</td><td>48</td><td>52</td><td>24</td><td>20</td></tr>
+					<tr><td>7XL</td><td>50</td><td>54</td><td>26</td><td>22</td></tr>					
+				</tbody>
+				</table>
+			</field> 
+			<field name="measure_info"  type="html">
+				<p><b>Sleeve  </b>Measure from the shoulder seam to the cuff / hem along the outer arm..</p>
+				<p><b>Neck Width  </b>Measured horizontally across the neck.</p>
+				<p><b>Shoulder  </b>Measure one shoulder tip to the other at the back.</p>
+				<p><b>Length  </b>Measure from the highest point on the shoulder seam to bottom hem.</p>
+				<p><b>Bust  </b>Measure around fullest part of the bust..</p>
+			</field>	
+         	<field name="link_text">Measurement Chart</field>         	
+         	<field name="image"   type="base64" file="website_product_size_chart/static/src/img/top-sleeveless-women.jpg"></field>
+         	<field name="product_tmpl_ids" eval="[(6,0,[ref('wk_top_product_template')])]"/>               
+         	 
+        </record>
+        <!-- ######################################################################################################### -->
+        <record id="website_size_chart_jean" model="website.size.chart">            
+            <field name="name">Size Chart for Jean</field>           
+         	<field name="row" >10</field>   
+         	<field name="col" >4</field>     
+         	<field name="chart_info"  type="html">
+				<table class="table">
+				<thead>
+					<tr><th>Sizes</th><th>Size</th><th>Waist (Inches)</th>
+					<th>Euro Size</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>24</td><td>XS</td><td>24</td><td>38</td></tr>
+					<tr><td>26</td><td>S</td><td>26</td><td>40</td></tr>
+					<tr><td>28</td><td>M</td><td>28</td><td>42</td></tr>
+					<tr><td>30</td><td>L</td><td>30</td><td>44</td></tr>
+					<tr><td>32</td><td>XL</td><td>32</td><td>46</td></tr>
+					<tr><td>34</td><td>XXL</td><td>34</td><td>48</td></tr>
+					<tr><td>36</td><td>3XL</td><td>36</td><td>50</td></tr>
+					<tr><td>38</td><td>4XL</td><td>38</td><td>52</td></tr>
+					<tr><td>40</td><td>5XL</td><td>40</td><td>54</td></tr>
+							
+				</tbody>
+				</table>
+			</field> 
+			<field name="measure_info"  type="html">
+				<p><b>Waist  </b>Measure at the slimmest part of natural waist above the naval.</p>
+				<p><b>Rise  </b>Measure from crotch to the waistband.</p>
+				<p><b>Inseam  </b>MMeasure from crotch to inside bottom of leg.</p>
+				<p><b>Hip  </b>Measure at the widest part below the waist.</p>				
+			</field>
+         	<field name="link_text">Measurement Chart</field>         	
+         	<field name="image"   type="base64" file="website_product_size_chart/static/src/img/jean-women_s.jpg"></field>  
+         	 <field name="product_tmpl_ids" eval="[(6,0,[ref('wk_jeans_product_template')])]"/>            
+        </record>
+                <!-- ############################################################################################################ -->
+         <record id="website_size_chart_Women" model="website.size.chart">            
+            <field name="name">Adidas Women Sports Shorts</field>          
+         	<field name="row" >6</field>   
+         	<field name="col" >3</field>     
+         	<field name="chart_info"  type="html"><table class="table">
+	         											<thead>
+															<tr><th>Sizes</th><th>Waist</th><th>Waist</th></tr>
+														</thead>
+														<tbody>
+															<tr><td>XS</td><td>27.16</td><td>38.26</td></tr>
+															<tr><td>S</td><td>29.57</td><td>40.94</td></tr>
+															<tr><td>M</td><td>32.00</td><td>43.30</td></tr>
+															<tr><td>L</td><td>34.92</td><td>46.06</td></tr>	
+															<tr><td>XL</td><td>38.26</td><td>46.06</td></tr>															
+														</tbody>
+													</table>
+		</field>
+         	<field name="measure_info"  type="html">
+         		<p><b>Waist  </b>Measure at the slimmest part of natural waist above the naval.</p>
+         		<p><b>Hip  </b>Measure at the widest part below the waist.</p>
+         	</field>         	
+         	<field name="link_text" >Size Chart Guide</field>    
+         	 <field name="image"   type="base64" file="website_product_size_chart/static/src/img/short-women.jpg"></field>  
+         	 <field name="product_tmpl_ids" eval="[(6,0,[ref('wk_short_product_template')])]"/>                      
+        </record>
+
+        <!-- ######################################################################################################### -->     
+        <record id="website_size_chart_short_men" model="website.size.chart">            
+            <field name="name">Size Chart for Men's Short</field>          
+         	<field name="row" >8</field>   
+         	<field name="col" >4</field>     
+         	<field name="chart_info"  type="html">
+				<table class="table">
+				<thead>
+					<tr><th>Sizes</th><th>Size(centimeters)</th><th>Size(Alphabetic)</th>
+					<th>Waist(inches)</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>28</td><td>72</td><td>XS</td><td>28</td></tr>
+					<tr><td>30</td><td>76</td><td>S</td><td>30</td></tr>
+					<tr><td>32</td><td>82</td><td>M</td><td>32</td></tr>
+					<tr><td>34</td><td>86</td><td>L</td><td>34</td></tr>
+					<tr><td>36</td><td>92</td><td>XL</td><td>36</td></tr>
+					<tr><td>38</td><td>96</td><td>XXL</td><td>38</td></tr>
+					<tr><td>40</td><td>102</td><td>XXXL</td><td>40</td></tr>
+				</tbody>
+				</table>
+			</field>
+         	<field name="measure_info"  type="html">
+			<p><b>Waist  </b>Measure around the body at the natural waist line (where you wear your belt).</p>
+			</field>         	
+         	<field name="link_text" >Size Chart</field>         	
+         	  <field name="image"   type="base64" file="website_product_size_chart/static/src/img/short-men.jpg"></field>  
+         	                    
+        </record>
+
+    	  <record id="website_size_chart_1" model="website.size.chart">            
+            <field name="name">Size Guide For Jacket</field>            
+         	<field name="row" >7</field>   
+         	<field name="col" >2</field>     
+         	<field name="chart_info"  type="html"><table class="table">
+         											<thead>
+													<tr><th>Sizes</th><th>Size(Alphabetic)</th></tr>
+													</thead>
+													<tbody>
+													<tr><td>38</td><td>XS</td></tr>
+													<tr><td>39</td><td>S</td></tr>
+													<tr><td>40</td><td>M</td></tr>
+													<tr><td>42</td><td>L</td></tr>
+													<tr><td>44</td><td>XL</td></tr>
+													<tr><td>46</td><td>XXL</td></tr>
+													</tbody>
+													</table>
+		</field>
+         	<field name="measure_info"  type="html"><b></b></field>         	
+         	<field name="link_text" >Size Guide</field>                    
+        </record>  
+	  <record id="website_size_chart_2" model="website.size.chart">            
+            <field name="name">Jockey Solid Men's Track Pants</field>           
+         	<field name="row" >7</field>   
+         	<field name="col" >2</field>     
+         	<field name="chart_info"  type="html"><table class="table">
+	         											<thead>
+															<tr><th>Sizes</th><th>Waist</th></tr>
+														</thead>
+														<tbody>
+															<tr><td>XS</td><td>26-28</td></tr>
+															<tr><td>S</td><td>28-30</td></tr>
+															<tr><td>M</td><td>32-34</td></tr>
+															<tr><td>L</td><td>36-38</td></tr>
+															<tr><td>XL</td><td>40-42</td></tr>
+															<tr><td>XXL</td><td>44-46</td></tr>
+														</tbody>
+													</table>
+		</field>
+         	<field name="measure_info"  type="html"><b></b></field>         	
+         	<field name="link_text" >Measure Guide</field>         	          
+        </record>
+         <record id="website_size_chart_3" model="website.size.chart">            
+            <field name="name">Nike Running Shoes</field>          
+         	<field name="row" >5</field>   
+         	<field name="col" >4</field>     
+         	<field name="chart_info"  type="html"><table class="table">
+	         											<thead>
+															<tr><th>UK/India</th><th>US</th><th>Euro</th><th>Length(in cms)</th></tr>
+														</thead>
+														<tbody>
+															<tr><td>4</td><td>6.5</td><td>37.5</td><td>23.5</td></tr>
+															<tr><td>5</td><td>7.5</td><td>38.5</td><td>24.5</td></tr>
+															<tr><td>6</td><td>8.5</td><td>40.0</td><td>25.5</td></tr>
+															<tr><td>7</td><td>9.5</td><td>41.0</td><td>26.5</td></tr>															
+														</tbody>
+													</table>
+		</field>
+         	<field name="measure_info"  type="html"><b></b></field>         	
+         	<field name="link_text" >Size Chart Guide</field>             
+        </record>       
+    </data>
+</odoo>

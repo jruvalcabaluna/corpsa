@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_dashboard_cat_id" model="ir.module.category">
+            <field name="name">Sale Dashboard</field>
+            <field name="sequence" eval="1"/>
+        </record>
+        <record id="sale_dashboard_group_id" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="sale_dashboard_cat_id"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

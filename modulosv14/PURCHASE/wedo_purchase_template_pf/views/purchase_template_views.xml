@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="purchase_order_template_view_form_pf" model="ir.ui.view">
+            <field name="name">purchase.order.template.form.pf</field>
+            <field name="model">purchase.order.template</field>
+            <field name="inherit_id" ref="wedo_purchase_template.purchase_order_template_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vendor_ids']" position="after">
+                    <field name="vendor_default_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

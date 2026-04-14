@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/pos_hide_products/static/src/js/models.js"></script>
+        </xpath>
+    </template>
+</odoo>

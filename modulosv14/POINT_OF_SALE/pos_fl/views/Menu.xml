@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <menuitem id="menu_point_of_sale_doctor" name="Doctores" parent="point_of_sale.menu_point_of_sale"
+                  action="pos_fl.res_partner_action_doctor" sequence="120"/>
+
+</odoo>

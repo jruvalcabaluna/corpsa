@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <templates id="pos_discounts_8a_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+<!--   PosDiscountGroupWidget -->
+    <t t-name="PosDiscountGroupWidget" name="Pos Discount Group Widget" owl="1">
+        <t t-if="env.pos.config.allow_discounts_8a">
+            <div class="control-button" t-att-class="{ highlight: isHighlighted }" t-on-click="renderElement">
+                <i class="fa fa-tag"></i>
+                <span>Descuento Grupo</span>
+            </div>
+        </t>
+   	</t>
+
+     <t t-name="ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('subpads')]" position="before">
+                <PosDiscountGroupWidget/>
+        </xpath>
+    </t>
+
+        <!-- PosBagPopupWidget -->
+    <t t-name="PosDiscountsGroupPopupWidget" owl="1">
+        <div class="modal-dialog">
+            <div class="popup popup-confirm" style="height: 550px;">
+                <p class="title" style="background-color: rgb(0,0,0); color: #fff;">Lista Grupos</p>
+                <div class="body">
+     				   <div class='div-container' style="height: 100px;">
+		                    <span class='product group-category' t-foreach="props.orderlines || []" t-as="item" t-att-data-product-id="item.id" t-on-click="click_on_group_product">
+							   <div class="product-img">
+								    <img t-att-src='item.image_url' alt="Product image"/>
+								      <span class="price-tag">
+								        <t t-esc="env.pos.format_currency(item.lst_price,'Product Price')"/>
+							         </span>
+					           </div>
+    							<div class="product-name">
+    								<t t-esc="item.display_name"/>
+    							</div>
+			         	   </span>
+							
+		                </div>
+		            </div>
+
+                <div class="footer" style="background-color: rgb(0,0,0); color: #fff;position:fixed;bottom:0;">
+                	<div class="button cancel" style="background-color: #ffffff; color: #000000;" t-on-click="go_back_screen">
+                        Cancelar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+  	</templates>
+  	
+  	

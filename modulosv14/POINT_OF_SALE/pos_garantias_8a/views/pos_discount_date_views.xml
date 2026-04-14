@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="pos_config_view_form_inherit_pos_discount_date" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.pos.discount.date</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+            <field name="arch" type="xml">
+				<xpath expr="//div[3]" position="after">
+<!--                <xpath expr="//div//field[@name='module_pos_discount']" position="after">-->
+<!--                <div id="btn_use_pos_loyalty" position="after">-->
+<!--                <h2>POS Discount Date </h2>-->
+<!--option 1-->
+<!--                    <div class="row mt16">-->
+<!--                        <label string="Product Garantia" for="discount_date_product_id" class="col-lg-3 o_light_label"/>-->
+<!--                        <field name="discount_date_product_id" attrs="{'required':[('module_pos_discount','=',True)]}"/>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                        <label string="Discount Date %" for="discount_date_pc" class="col-lg-3 o_light_label"/>-->
+<!--                        <field name="discount_date_pc"/>-->
+<!--                        <field name="discount_date_pc_purchase"/>-->
+<!--                    </div>-->
+
+
+<!--                    option 2-->
+                    <div class="row mt16 o_settings_container" id="session_config">
+<!--						<div id="garantia" class="col-xs-12 col-md-6 o_setting_box">-->
+<!--							<div class="o_setting_left_pane">-->
+<!--								<field name="iface_discount_date"/>-->
+<!--							</div>-->
+<!--							<div class="o_setting_right_pane">-->
+<!--								<label for="iface_discount_date" />-->
+<!--							</div>-->
+<!--						</div>-->
+						<div class="col-xs-12 col-md-6 o_setting_box">
+							<div class="o_setting_right_pane">
+								<label for="discount_date_product_id"/>
+								<div class="text-muted">
+									Select Product Discount
+								</div>
+								<div class="content-group mt16">
+									<field name="discount_date_product_id"/>
+<!--                                    <label string="Discount Date %" for="discount_date_pc" class="col-lg-3 o_light_label"/>-->
+<!--                                    <field name="discount_date_pc"/>-->
+<!--                                    <field name="discount_date_pc_purchase"/>-->
+								</div>
+							</div>
+						</div>
+					</div>
+
+                </xpath>
+            </field>
+        </record>
+
+        <data noupdate="1">
+            <function model="pos.config" name="_default_discount_date_value_on_module_install"/>
+        </data>
+</odoo>

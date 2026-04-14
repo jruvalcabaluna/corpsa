@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_calendar_event_calendar" model="ir.ui.view">
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar" />
+        <field name="model">calendar.event</field>
+        <field name="name">calendar.event</field>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="color">color</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_calendar_event_form_holos_appointment" model="ir.ui.view">
+        <field name="name">res.partner.view.form.holos.appointment</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="after">
+                <div class="oe_title">
+                    <label for="appointment_resource_id"/>
+                    <field name="appointment_resource_id" string="Resource"/>
+                </div>
+                <div class="oe_title">
+                    <label for="user_id"/>
+                    <field name="user_id" string="User"/>
+                </div>
+                <div class="oe_title">
+                    <label for="appointment_type_id"/>
+                    <field name="appointment_type_id" string="Type"/>
+                </div>
+
+                <div class="oe_title">
+                    <label for="customer_id"/>
+                    <field name="customer_id" string="Cliente"/>
+                </div>
+
+            </xpath>
+            <xpath expr="//page[@name='page_details']" position="before">
+                <page name="page_options_appointment" string="Detalle de Cita">
+                    <group>
+                        <group>
+                            <field name="start" string="Comienza a" force_save="1"/>
+                            <field name="stop" string="Termina a" force_save="1"/>
+
+                            <label for="duration" attrs="{'invisible': [('allday','=',True)]}"/>
+                            <div attrs="{'invisible': [('allday','=',True)]}">
+                                <field name="duration" widget="float_time" string="Duración" class="oe_inline"
+                                       attrs="{'readonly': [('id', '!=', False), ('recurrency','=',True)]}"/>
+                                <span> horas</span>
+                            </div>
+                            <field name="allday" attrs="{'readonly': [('id', '!=', False), ('recurrency','=',True)]}" force_save="1"/>
+                        </group>
+
+                        <group>
+                            <field name="start_date" string="Starting at" attrs="{'required': [('allday','=',True)], 'invisible': [('allday','=',False)]}" force_save="1"/>
+                            <field name="stop_date" string="Ending at" attrs="{'required': [('allday','=',True)],'invisible': [('allday','=',False)]}" force_save="1"/>
+                            <field name="start" string="Starting at" attrs="{'required': [('allday','=',False)], 'invisible': [('allday','=',True)]}"/>
+                            <field name="stop" invisible="1"/>
+                            <label for="duration" attrs="{'invisible': [('allday','=',True)]}"/>
+                            <div attrs="{'invisible': [('allday','=',True)]}">
+                                <field name="duration" widget="float_time" string="Duration" class="oe_inline" attrs="{'readonly': [('id', '!=', False), ('recurrency','=',True)]}"/>
+                                <span> hours</span>
+                            </div>
+                            <field name="allday" attrs="{'readonly': [('id', '!=', False), ('recurrency','=',True)]}" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="categ_ids" widget="many2many_tags" options="                                     {'no_create_edit': True}"/>
+                            <field name="alarm_ids" widget="many2many_tags"/>
+                            <field name="location"/>
+                            <field name="event_tz" attrs="{'invisible': [('recurrency', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <label for="description"/>
+                    <field name="description"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

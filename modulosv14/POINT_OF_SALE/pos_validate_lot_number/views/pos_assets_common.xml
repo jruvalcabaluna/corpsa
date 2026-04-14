@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/EditListInput.js"/>
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/main.js"/>
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/OrderWidget.js"/>
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/ProductScreen.js"/>
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/WkAlertPopUp.js"/>
+            <script type="text/javascript" src="/pos_validate_lot_number/static/src/js/WkTextAreaPopUp.js"/>
+
+            <link rel="stylesheet" href="/pos_validate_lot_number/static/src/css/product_by_lot_number.css"/>
+
+        </xpath>
+    </template>
+</odoo>

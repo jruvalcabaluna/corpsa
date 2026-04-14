@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<odoo>
+    <record id="view_purchase_request_form_sequence" model="ir.ui.view">
+        <field name="name">purchase.request.form.sequence</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page//field//tree//field[@name='product_id']" position='before'>
+                <field name="sequence" widget="handle"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

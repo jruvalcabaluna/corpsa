@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_form_view">
+        <field name="name">product.template.form.website.size.chart</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field name="size_chart"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="website_size_chart_form" model="ir.ui.view">
+        <field name="name">website.size.chart.form</field>
+        <field name="model">website.size.chart</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_left oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="row"/>
+                            <field name="col"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="template" string="Website Template">
+                            <br/><br/>
+                            <group string='Link'><field name="link_text" /></group>
+                            <group string='Size Chart'><field name="chart_info" nolabel="1"/> </group>
+                            <group string='How To measure '><field name="measure_info" nolabel="1"/> </group>
+                        </page>
+                        <page name="Product" string="Associated Product">
+                            <br/><br/>
+                            <group col="2">
+                                <div>
+<!--                                    <field name="product_tmpl_ids"  nolabel="1" domain="[('size_chart','=', False)]" />-->
+                                    <field name="product_tmpl_ids"  nolabel="1" />
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="website_size_chart_tree" model="ir.ui.view">
+        <field name="name">tree.website.size.chart.tree</field>
+        <field name="model">website.size.chart</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="link_text"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="website_size_chart_action" model="ir.actions.act_window">
+        <field name="name">Size Chart Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">website.size.chart</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="website_size_chart_tree"/>
+    </record>
+
+    <menuitem id="menu_website_size_chart_root_menu"
+              name="Size Chart" action="website_size_chart_action"
+              parent="website_sale.menu_product_settings" sequence="50"/>
+
+
+
+</odoo>

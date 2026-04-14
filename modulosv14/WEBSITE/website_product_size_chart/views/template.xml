@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+    <!-- See LICENSE file for full copyright and licensing details. -->
+    <template id="website_product_size_chart_frontend" inherit_id="website.assets_frontend" name="Website Size Chart">
+      <xpath expr="." position="inside">
+        <link href="/website_product_size_chart/static/src/css/website_product_size_chart.css" rel="stylesheet"/>
+      </xpath>
+    </template>
+    <template active="True" id="inherited_website_product_size_chart" inherit_id="website_sale.product" name="Product Size Chart">
+      <xpath expr="//hr" position="before">
+        <t t-if="size_chart">
+            <br/>
+            <i class="fa fa fa-th"/>
+            <a data-target="#modal_product_size_chart" data-toggle="modal" t-att-title="'Click To View %s %s'%(product.name,size_chart.link_text)" style="cursor: pointer">
+              <t t-esc="size_chart.link_text"/>
+            </a>
+            <div class="modal fade" id="modal_product_size_chart" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p class="modal-tittle modal_product_size_chart_label">
+                      <t t-esc="size_chart.link_text"/>&#160;For
+                      <t t-esc="product.name"/>
+                    </p>
+                    <button class="close" data-dismiss="modal" type="button">
+                      <i class=" icon icon-cross" />
+                    </button>
+                    
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <ul class="nav nav-tabs nav-justified">
+                          <li class="nav-item active">
+                            <a class="nav-link active" data-toggle="tab" href="#size_options">Size Options</a>
+                          </li>
+                          <li  class="nav-item" t-if="size_chart">
+                            <a  class="nav-link" data-toggle="tab" href="#measurement_guide">Measurement Guide</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="my-tab-content">
+                          <div class="tab-pane active" id="size_options">
+                            <t t-raw="size_chart.chart_info"/>
+                          </div>
+                          <div class="tab-pane" id="measurement_guide">
+                            <t t-raw="size_chart.measure_info"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4 text-center size_char_image_div" t-if="size_chart.image">
+                        <span t-field="size_chart.image" t-options="{'widget': 'image', 'resize': None if product_image_big else '300x300', 'zoom': 'image'}" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </t>
+      </xpath>
+    </template>
+  </data>
+</odoo>

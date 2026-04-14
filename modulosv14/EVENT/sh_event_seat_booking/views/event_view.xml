@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_event_seat_arrangement_form" model="ir.ui.view">
+        <field name="name">sh.event.seat.arrangement.form</field>
+        <field name="model">event.event.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Seat Arrangement">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="event_id" readonly="1" />
+                            <field name="name" readonly="1" string="Ticket Type" />
+                            <field name="row_count" string="Total Row" />
+                            <field name="col_count" string="Max Seat Number in Single row" />
+                            <field name="add_blank_row"/>
+                            <field name="add_blank_col"/>
+                            <button name="prepare_arrangement" string="Prepare Seat Arrangement" type="object" class="btn-primary" />
+                            <button name="clear_arrangement" string="Clear Seat Arrangement" type="object" class="btn-primary" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="seat_arrangement_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <!-- 	<field name="sequence" widget="handle"/> -->
+                                <button name="clear_row" string="Clear Row" type="object" class="btn-primary"/>
+                                <field name="row" />
+                                <field name="seat_selection_ids" widget="many2many_tags" options="{'no_create_edit':True}" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="seats_max" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sh_event_event_form_inherit" model="ir.ui.view">
+        <field name="name">sh.event.event.inherit.form</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="is_seat_booking" />
+            </field>
+        </field>
+    </record>
+    <record id="sh_event_sale_ticket_form_inherit" model="ir.ui.view">
+        <field name="name">sh.event.sale.ticket.inherit.form</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page string="Booked Seats" name="booked_seat" invisible="1">
+                    <field name="booked_seat_ids">
+                        <tree> <field name="name" /><field name="seat_no" /><field name="event_id" /><field name="event_ticket_id" /> </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="sh_event_sale_ticket_tree_inherit" model="ir.ui.view">
+        <field name="name">sh.event.sale.ticket.line.inherit.tree</field>
+        <field name="model">event.event.ticket</field>
+        <field name="inherit_id" ref="event.event_event_ticket_view_tree_from_event" />
+        <field name="arch" type="xml">
+            <field name="seats_unconfirmed" position="after">
+                <field name="row_count" string="Total Row" /><field name="col_count" invisible="1" />
+                <button name="sh_seat_arrangement_action" string="Open Seat Arrangement" type="object" icon="fa-list" />
+            </field>
+        </field>
+    </record>
+    <record id="sh_event_registration_form_inherit" model="ir.ui.view">
+        <field name="name">sh.event.registration.inherit.form</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event.view_event_registration_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="before">
+                <div class="oe_title">
+                    <h1>
+                        <field name="seat_no" readonly="1" />
+                        <button name="%(sh_event_seat_booking.event_seat_booking_action)d" string="Switch Seat" class="btn-primary" type="action" attrs="{'invisible':[('state','!=','draft')]}" style="margin-left: 35px; margin-top: -4px;" />
+                    </h1>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="sh_event_registration_kanban_inherit" model="ir.ui.view">
+        <field name="name">sh.event.registration.inherit.kanban</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event.event_registration_view_kanban" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="seat_no" />
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_body')]/field[@name='event_id']" position="after">
+                <br />
+                <b>Seat No : <field name="seat_no" /></b>
+            </xpath>
+        </field>
+    </record>
+    <record id="sh_event_registration_tree_inherit" model="ir.ui.view">
+        <field name="name">sh.event.registration.inherit.tree</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event.view_event_registration_tree" />
+        <field name="arch" type="xml">
+            <field name="create_date" position="before">
+                <field name="seat_no" readonly="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

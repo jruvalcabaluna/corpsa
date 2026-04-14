@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="assets_pos_ext" name="pos_global_discount_date assets" inherit_id="pos_retail.assets_pos">
+<!--    <template id="assets_pos_ext" name="pos_global_discount_date assets" inherit_id="point_of_sale.assets">-->
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/pos_global_discount_date/static/src/js/Core/LoadModels.js"/>
+            <script type="text/javascript" src="/pos_global_discount_date/static/src/js/Core/Order.js"/>
+            <script type="text/javascript" src="/pos_global_discount_date/static/src/js/Screens/ProductScreen/ListFeaturesButtonsGlobalDiscountDate.js"/>
+            <script type="text/javascript" src="/pos_global_discount_date/static/src/js/Screens/ProductScreen/ControlButtons/HiddenButtons/ButtonSetDiscountGlobalDate.js"/>
+        </xpath>
+    </template>
+
+</odoo>

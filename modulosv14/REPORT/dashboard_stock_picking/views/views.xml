@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+        <record id="dashboard_stock_search_id" model="ir.ui.view">
+            <field name="model">dashboard.stock</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="user_id" string="Sucursal"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Sale Representative" name="representative" domain="[]" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="dashboard_stock_graph_id" model="ir.ui.view">
+            <field name="model">dashboard.stock</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="user_id" string="Sale Representative"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="dashboard_stock_kanban_id" model="ir.ui.view">
+            <field name="model">dashboard.stock</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_stock_kanban" create="false" delete="false">
+                    <field name="id"/>
+                    <field name="user_id"/>
+                    <field name="stock_picking_no"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div style="width:180px">
+                                <div class="container">
+                                     <div>
+                                        <h5><field name="user_code"/> - <field name="user_id"/></h5>
+                                     </div>
+                                    <div t-if="record.stock_picking_no.raw_value > 0" class="row">
+                                        <div class="col-10">
+                                            <button class="btn btn-primary" name="stock_picking_urgent" type="object">
+<!--                                            <a name="stock_picking_urgent" type="object">-->
+                                                <field name="stock_picking_no"/>
+                                                A Procesar
+<!--                                            </a>-->
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="dashboard_stock_action_id">
+            <field name="name">Dashboard Stock</field>
+            <field name="model_id" ref="model_dashboard_stock"/>
+            <field name="state">code</field>
+            <field name="code">action = model.data_dashboard_stock()</field>
+        </record>
+
+        <menuitem id="stock_dashboard_action_menu_id" name="Dashboard" parent="stock.menu_stock_root" action="dashboard_stock_action_id" sequence="0"
+                  groups="dashboard_stock_picking.stock_dashboard_group_id"/>
+
+    </data>
+</odoo>

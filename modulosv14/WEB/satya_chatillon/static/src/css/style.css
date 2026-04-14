@@ -1,0 +1,408 @@
+@font-face{
+    font-family: 'PrestigeEliteStd';
+    src: url(../fonts/PrestigeEliteStd-Bd1.ttf);
+}
+p, h1 {
+  font-family: "PrestigeEliteStd", sans-serif;
+}
+/* *,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+} */
+
+/*html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}*/
+
+/*body {
+  max-width: 1140px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2, p {
+  font-family: "prestige", sans-serif;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+*/
+.modal-header .close {
+    padding: 0;
+    margin: 0;
+}
+.image-shadow {
+    box-shadow: 5px 5px 10px #555;
+    width: auto;
+}
+.image-portrait {
+    border-radius: 50px;
+    width: 65vw;
+    height: auto;
+    box-shadow: 0 5px 15px #555;
+}
+figure {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  display: flex;
+  justify-content: center;
+}
+.item {
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  width: 100%;
+  height: 100%;
+  transition: background-image .5s;
+}
+
+.container-fluid {
+  display: block;
+  padding: 50px 20px;
+}
+/*
+.item-1 img{
+  width: 40%;
+}*/
+.item-1 img{
+  width: 10%;
+  height: auto;
+}
+.item-2 {
+    background-image: url('../img/Satya_Sello_Mockup.png');
+  height: 150px;
+}
+.item-3 {
+    background-image: url('../img/Satya_Web_Esqueleto_Over.gif');
+  height: 450px;
+}
+ .item-4 {
+  background-image: url('../img/clases_dibujo_logo.jpg');
+  height: 450px;
+}
+.item-5 {
+    background-image: url('../img/admin-ajax-2.png');
+  height: 300px;
+}
+.item-6 {
+    background-image: url('../img/Satya_Web_ADJ1.png');
+  height: 300px;
+}
+.item-7 {
+    background-image: url('../img/Satya_Web_Changos_Over.gif');
+  height: 300px;
+}
+.item-8 {
+    background-image: url('../img/Satya_Web_TallerDesnudos1.png');
+  height: 300px;
+}
+.item-9 {
+    background-image: url('../img/Satya_Web_PegadasenLaCalle_Over.gif');
+  height: 450px;
+}
+.item-10 {
+    background-image: url('../img/Satya_Web_AranCC83a_Over.gif');
+  height: 450px;
+}
+.item-11 {
+  background-image: url('../img/Satya_Web_Retratos.png');
+  height: 450px;
+}
+.item-12 {
+  background-image: url('../img/Satya_Web_Encuerados.gif');
+  height: 300px;
+}
+.item-13 {
+  background-image: url('../img/Satya_Web_Eltatuado.png');
+  height: 300px;
+}
+.item-14 {
+  background-image: url('../img/Satya_Web_Prensa_Over-1.gif');
+  height: 300px;
+}
+.item-15 {
+  background-image: url('../img/Satya_Web_PoesieDepliee_Over.gif');
+  height: 450px;
+}
+.item-16 {
+  background-image: url('../img/Satya_Web_Carteles_Over.png');
+  height: 450px;
+}
+.item-17 {
+  background-image: url('../img/Satya_Web_PPP_Over.gif');
+  height: 450px;
+}
+.item-18 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 60px;
+}
+
+img {
+  margin: 25px 0px;
+  width: 100%;
+  height: 90vh;
+  object-fit: contain;
+  display: block;
+}
+
+.item-18 a,
+.item-18 a:hover,
+.item-18 a:visited {
+  color: #29242e;
+}
+
+.modal-header #nombre-satya {
+  width: 150px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-body-sc img {
+  padding: 20px 0;
+}
+
+
+@media screen and (min-width: 767px) {
+  .item-1 img{
+    width: 65%;
+  }
+  .container-fluid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 168px);
+    grid-gap: 1.5rem;
+    padding: 50px 0;
+  }
+  .item-1 {
+    grid-area: tienda;
+    grid-column: 2/4;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: center;
+    max-width: 275px;
+  }
+  .item-2 {
+    grid-area: satya;
+    grid-column: 5/9;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-2:hover {
+    background-image: url('../img/Satya_Nombre_Over.gif');
+    /*background-image: url(./assets/img/Satya_Nombre_Over.gif);*/
+  }
+  .item-3 {
+    background-image: url('../img/Satya_Web_Esqueleto.png');
+    /*background-image: url(./assets/img/Satya_Web_Esqueleto.png);*/
+    grid-area: esqueleto;
+    grid-column: 9/13;
+    grid-row: 1/span 2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-3:hover {
+    background-image: url('../img/Satya_Web_Esqueleto_Over.gif');
+    /*background-image: url(./assets/img/Satya_Web_Esqueleto_Over.gif);*/
+  }
+  .item-4 {
+    grid-area: clases;
+    grid-column: 1/span 4;
+    grid-row: 2/4;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-5 {
+    background-image: url('../img/admin-ajax-2.png');
+    /*background-image: url(./assets/img/admin-ajax-2.png);*/
+    grid-area: fieras;
+    grid-column: 6/span 3;
+    grid-row: 2/span 2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-5:hover {
+    background-image: url('../img/admin-ajax.png');
+    /*background-image: url(./assets/img/admin-ajax.png);*/
+  }
+  .item-6 {
+    background-image: url('../img/Satya_Web_ADJ1.png');
+    /*background-image: url(./assets/img/Satya_Web_ADJ1.png);*/
+    grid-area: adj;
+    grid-column: 9/span 4;
+    grid-row: 3/span 2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-6:hover {
+    background-image: url('../img/Satya_Web_ADJ_Over1.png');
+    /*background-image: url(./assets/img/Satya_Web_ADJ_Over1.png);*/
+  }
+  .item-7 {
+    background-image: url('../img/Satya_Web_Changos_Over1.png');
+    /*background-image: url(./assets/img/Satya_Web_Changos_Over1.png);*/
+    grid-area: changos;
+    grid-column: 1/span 4;
+    grid-row: 4/span 2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-7:hover {
+    background-image: url('../img/Satya_Web_Changos_Over.gif');
+    /*background-image: url(./assets/img/Satya_Web_Changos_Over.gif);*/
+  }
+  .item-8 {
+    background-image: url('../img/Satya_Web_TallerDesnudos1.png');
+    /*background-image: url(./assets/img/Satya_Web_TallerDesnudos1.png);*/
+    grid-area: dibujo-modelo;
+    grid-column: 5/span 3;
+    grid-row: 3/span 2;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+    position: relative;
+    top: 50px;
+    left: 50px;
+  }
+  .item-8:hover {
+    background-image: url('../img/Satya_Web_TallerDesnudos_Over1.png');
+    /*background-image: url(./assets/img/Satya_Web_TallerDesnudos_Over1.png);*/
+  }
+  .item-9 {
+    background-image: url('../img/Satya_Web_PegadasenLaCalle_Over1.png');
+    /*background-image: url(./assets/img/Satya_Web_PegadasenLaCalle_Over1.png);*/
+    grid-area: pegadas;
+    grid-column: 8/span 5;
+    grid-row: 5/span 3;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-9:hover {
+    background-image: url('../img/Satya_Web_PegadasenLaCalle_Over.gif');
+    /*background-image: url(./assets/img/Satya_Web_PegadasenLaCalle_Over.gif);*/
+  }
+  .item-10 {
+    background-image: url('../img/Satya_Web_AranCC83as_1.png');
+    /*background-image: url(./assets/img/Satya_Web_AranCC83as_1.png);*/
+    grid-area: arana;
+    grid-column: 1/span 3;
+    grid-row: 6/span 3;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-10:hover {
+    background-image: url('../img/Satya_Web_AranCC83a_Over.gif');
+    /*background-image: url(./assets/img/Satya_Web_AranCC83a_Over.gif);*/
+  }
+  .item-11 {
+    grid-area: retratos;
+    grid-column: 5/span 4;
+    grid-row: 4/span 4;
+    justify-self: stretch;
+    align-self: stretch;
+    height: 100%;
+  }
+  .item-12 {
+    background-image: url('../img/Satya_Web_Encuerados1.png');
+    /*background-image: url(./assets/img/Satya_Web_Encuerados1.png);*/
+    grid-area: encuerados;
+    grid-column: 9/span 4;
+    grid-row: 8/span 2;
+    position: relative;
+    top: 20px;
+    height: 100%;
+  }
+  .item-12:hover {
+    background-image: url('../img/Satya_Web_Encuerados.gif');
+  }
+  .item-13 {
+    background-image: url('../img/Satya_Web_Eltatuado.png');
+    grid-area: tatuados;
+    grid-column: 1/span 4;
+    grid-row: 9/span 2;
+    height: 100%;
+  }
+  .item-13:hover {
+    background-image: url('../img/Satya_Web_Eltatuado_Over1.png');
+  }
+  .item-14 {
+    background-image: url('../img/Satya_Web_Prensa1.png');
+    grid-area: prensa;
+    grid-column: 5/span 4;
+    grid-row: 7/span 2;
+    align-self: center;
+    height: 100%;
+  }
+  .item-14:hover {
+    background-image: url('../img/Satya_Web_Prensa_Over-1.gif');
+  }
+  .item-15 {
+    background-image: url('../img/Satya_Web_PoesieDepliee_Over1.png');
+    grid-area: poesie-deplie;
+    grid-column: 9/span 4;
+    grid-row: 10/span 4;
+    height: 100%;
+  }
+  .item-15:hover {
+    background-image: url('../img/Satya_Web_PoesieDepliee_Over.gif');
+  }
+  .item-16 {
+    background-image: url('../img/Satya_Web_Carteles2.png');
+    grid-area: carteles;
+    grid-column: 1/span 4;
+    grid-row: 11/span 4;
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+  }
+  .item-16:hover {
+    background-image: url('../img/Satya_Web_Carteles_Over.png');
+  }
+  .item-17 {
+    background-image: url('../img/Satya_Web_PPP_Over1.png');
+    grid-area: ppp;
+    grid-column: 5/span 4;
+    grid-row: 9/span 4;
+    height: 100%;
+  }
+  .item-17:hover {
+    background-image: url('../img/Satya_Web_PPP_Over.gif');
+  }
+  .item-18 {
+    grid-area: arrow-up;
+    grid-column: 12/span 1;
+    grid-row: 13/span 4;
+    justify-self: center;
+    align-self: center;
+    font-size: 60px;
+  }
+}
+@font-face {
+  font-family: prestige;
+  src: url(./assets/fonts/PrestigeEliteStd-Bd1.ttf);
+  font-weight: normal;
+}

@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_config_fl">
+            <field name="name">pos.config.fl</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <notebook groups="point_of_sale.group_pos_manager">
+                        <page string="Security and Discount" groups="point_of_sale.group_pos_manager">
+                            <group>
+                                <group string="Validation">
+<!--                                    <field name="validate_remove_line"/>-->
+                                    <field name="validate_by_manager"/>
+                                </group>
+                            </group>
+                            <group string="Managers Validate" attrs="{'invisible': [('validate_by_manager', '=', False)]}">
+                                <field name="manager_ids" widget="many2many_tags" nolabel="1" attrs="{'required': [('validate_by_manager', '=', True)]}"/>
+                            </group>
+                        </page>
+
+<!--                        <page string="POS Orders" name="pos_orders" groups="point_of_sale.group_pos_manager">-->
+<!--                            <group>-->
+<!--                                <group string="Sellers">-->
+<!--                                    <field name="default_seller_id"/>-->
+<!--                                    <field name="seller_ids" widget="many2many_tags" attrs="{'invisible': [('add_sale_person', '=', False)], 'required': [('add_sale_person', '=', True)]}"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <field name="backup_orders_automatic"/>-->
+<!--                                    <field name="sale_with_package"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                        </page>-->
+
+
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

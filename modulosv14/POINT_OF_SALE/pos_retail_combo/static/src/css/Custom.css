@@ -1,0 +1,592 @@
+.alert [data-notify="dismiss"] {
+    margin-right: 5px;
+    background: black;
+    color: #ffffff;
+}
+
+.alert span {
+    font-family: "Montserrat", "Odoo Unicode Support Noto", sans-serif;
+    max-width: 100%;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/*order widget*/
+.pos .actionpad .button .fa-user {
+    top: 17px;
+    color: black;
+    width: 25px;
+}
+
+.pos .order .orderline .product-name {
+    width: 55%;
+    font-width: 500;
+}
+
+.pos .price-down {
+    text-decoration: line-through;
+    font-size: 13px;
+    left: 0px;
+    color: #e2e2e2;
+}
+
+.pos .orderline-quantity {
+    line-height: 20px;
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: 900;
+    color: black;
+}
+
+.pos .order .orderline .price {
+    border-radius: 5px;
+    text-align: right;
+    margin-right: 40px;
+    color: black;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.pos .line-remove {
+    float: right;
+    position: fixed;
+    right: 0px;
+    margin-left: 20px;
+    width: 35px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pos .line-remove:hover {
+    background: #6ec89b;
+}
+
+.pos .full-cart-screen {
+    cursor: pointer;
+    float: right;
+    border: unset;
+    background: inherit;
+    padding: 0px
+}
+
+.pos .full-cart-screen :hover {
+    background: #6ec89b;
+}
+
+.pos .popup.popup-selection .selection {
+    max-height: 400px;
+    background: #fff;
+}
+
+.pos .login-button {
+    height: 50px;
+    padding: 15px;
+    min-height: 80px;
+    color: black;
+}
+
+.pos .full-cart-screen .fa {
+    font-size: 20px;
+    width: 20px;
+}
+
+.pos .order .summary {
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.pos .order .summary .line {
+    width: 100%;
+    margin-right: 0px;
+    font-weight: 900;
+}
+
+.splitbill-screen .order .orderline.selected .info-list em {
+    padding-right: 10px;
+}
+
+.pos .order .summary .total {
+    font-size: 40px;
+    line-height: 30px;
+    padding: 10px;
+}
+
+.pos .button-extend {
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 400px;
+    min-height: 80px;
+    background: #aaaaaa;
+}
+
+.pos .summary-label {
+    font-weight: 900;
+    border-bottom: 1px solid #3c4858;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.pos .oe_green {
+    color: #4CAF50;
+}
+
+.pos .button-label {
+    font-size: 13px;
+    padding: 2px;
+    color: black;
+    height: 40px;
+}
+
+.pos .secondary-button {
+    background: #6ec89b !important;
+}
+
+.pos .primary-button {
+    background: #FF5722 !important;
+}
+
+.pos .primary-button:hover {
+    background: #6ec89b;
+}
+
+.pos .product .price-tag {
+    font-weight: 900;
+    background: #ffffff;
+}
+
+.pos .note_element {
+    width: 100% !important;
+    margin-bottom: 0px !important;
+}
+
+.screen .screen-full-width {
+    /*height: auto;*/
+    top: 0px;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: absolute;
+}
+
+.pos .order .summary .line .subentry {
+    line-height: 50px;
+    text-align: right;
+}
+
+.pos .button-extend > button {
+    float: left;
+    min-height: 40px;
+    height: 75px;
+    color: black;
+    display: inline-grid;
+    width: 100px;
+    font-size: 12px !important;
+    margin: 5px;
+    border-radius: 5px;
+    background: #ffffff;
+    border: 0px;
+}
+
+.pos .button-extend > button .label {
+    background: #FF5722;
+    border-radius: 65%;
+    padding: 5px;
+    font-size: 13px !important;
+    color: #fff;
+    width: 20px;
+}
+
+.pos .client-selected {
+    padding: 20px;
+    font-size: 13px;
+    color: black;
+    border-bottom: 1px solid black;
+    font-weight: 900;
+}
+
+.card .card-title {
+    font-weight: 900;
+    margin: 10px;
+    color: black;
+    font-size: 20px;
+    min-height: 30px;
+    padding: 10px;
+    line-height: 40px;
+    border-bottom: 1px solid;
+}
+
+.pos .button-extend > button:hover {
+    background: #6ec89b;
+}
+
+.pos .summary-table {
+    width: 100%;
+    background: #e2e2e2;
+    bottom: 0px;
+    vertical-align: bottom;
+}
+
+.pos .summary-table tr th {
+    border: 1px solid #fff;
+}
+
+.pos .receipt-line td {
+    border: 1px solid #fff;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+.pos .button-extend > button .fa {
+    color: black;
+    font-size: 25px;
+}
+
+.pos .order .orderline {
+    padding: 10px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.pos .order .orderline:hover {
+    background: #d2ffe9 !important;
+}
+
+/*.pos .order .orderline.selected {*/
+/*
+.pos .order .orderline.selected .line-remove {
+    color: #FF5722;
+}
+
+.pos .order .orderline .info-list input {
+    border: 1px solid #6EC89B;
+}
+
+.pos .product .product-name {
+    color: black;
+    bottom: 30px;
+    font-weight: 900;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 9999;
+}
+
+.pos .line-icon {
+    font-size: 20px;
+    margin-right: 20px;
+    min-width: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    background: unset;
+}
+
+.pos .breadcrumb {
+    padding: 0px;
+    color: black;
+    background: unset;
+    border: 1px solid rgb(209, 209, 209);
+    border-right: unset;
+    height: 50px;
+}
+
+.pos .breadcrumb-arrow {
+    display: none;
+}
+
+.pos .breadcrumb:last-child {
+    background: #6EC89B
+}
+
+.pos .breadcrumb-button {
+    color: black;
+    border-radius: 5px;
+    font-weight: 900;
+    border-right: unset;
+}
+
+.pos .breadcrumb-button.breadcrumb-home {
+    font-size: 40px;
+    color: #FF5722;
+    text-align: center;
+    border: unset;
+}
+
+.pos .breadcrumb-button.breadcrumb-home:hover {
+    background: #6EC89B
+}
+
+.pos .order_line_button {
+    color: black;
+    height: 40px;
+    padding-top: 0px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background: #fff;
+    width: 40px;
+    font-size: 25px !important;
+}
+
+.pos .order_line_button:hover {
+    background: #FF5722;
+    color: #fff;
+
+}
+
+.pos .line-icon:hover {
+    background: #FF5722 !important;
+    color: #fff;
+}
+
+.pos .order_line_button .fa {
+    font-size: 20px;
+}
+
+.pos .numpad button {
+    color: #fff;
+    border-left: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    border-radius: 5px;
+    margin: 1px;
+    border: 0px;
+    width: 23%;
+    background-color: #e2e2e2;
+}
+
+.pos .numpad button:hover {
+    background: #6EC89B !important;
+}
+
+
+.pos .breadcrumb:last-child {
+    padding-right: unset !important;
+}
+
+.payment-status-container .label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.payment-status-container .amount {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.screen .top-content .button {
+    border-radius: 5px;
+    margin-right: 20px;
+    border: unset;
+}
+
+.screen .top-content .next {
+    margin-right: 20px;
+    background: #d1f5e3;
+}
+
+.screen .top-content .button:hover {
+    background: #6EC89B;
+}
+*/
+
+/*popup*/
+.pos .modal-dialog .popup .product .combo-item-product-img-big {
+    display: none
+}
+
+.pos .popup.popup-number {
+    min-width: 400px;
+}
+
+.pos .popup .category-simple-button {
+    line-height: 20px;
+    font-weight: 400;
+    background: #d2d2d2;
+    /*font-size: 13px;*/
+    font-size: 20px;
+    padding: 15px;
+    min-height: 100px;
+    min-width: 15% !important;
+}
+
+.pos .popup .category-simple-button-2 {
+    line-height: 20px;
+    font-weight: 400;
+    background: #d2d2d2;
+    /*font-size: 13px;*/
+    font-size: 33px;
+    padding: 15px;
+    min-height: 100px;
+    min-width: 15% !important;
+}
+
+.pos .popup .category-simple-button:hover {
+    background: #6EC89B;
+}
+
+.pos .product_configurator_attributes .configurator_radio input[type='radio'] {
+    width: 30%;
+}
+
+.pos .product_configurator_attributes .configurator_radio .radio_attribute_label {
+    font-weight: normal;
+    display: inline-block;
+    width: 50%;
+    color: black;
+    font-size: 20px;
+}
+
+.pos .info {
+    line-height: 20px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #1565C0;
+    font-weight: 900;
+}
+
+.pos .checkbox_field {
+    box-shadow: none !important;
+    width: 20px !important;
+    margin-top: -8px;
+    float: left;
+    margin-left: 7px;
+}
+
+.pos .popup .button {
+    width: unset;
+    padding: 5px;
+    min-width: 100px;
+    margin: 10px;
+}
+
+.pos .popup .footer {
+    background: #fff;
+}
+
+.pos .popup .footer .fa {
+    margin-left: 10px;
+}
+
+/*auto complete*/
+
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+    z-index: 1001 !important;
+    background-color: #ffffff;
+    min-height: 40px;
+}
+
+.ui-menu-item {
+    color: #1565C0;
+    font-family: "Montserrat", "Odoo Unicode Support Noto", sans-serif;
+    cursor: pointer;
+    min-height: 20px;
+    z-index: 1001 !important;
+    padding: 5px;
+}
+
+.ui-menu-item a {
+    line-height: 40px;
+    font-weight: 400;
+    padding: 15px;
+    color: #1565C0;
+    font-size: 20px;
+    min-height: 40px;
+    border-bottom: 1px solid #FF5722;
+}
+
+.ui-menu-item:hover {
+    background: #6EC89B;
+    font-width: 900;
+}
+
+.pos .image-uploader {
+    cursor: pointer;
+}
+
+.pos .card-issue {
+    color: #FF5722;
+    line-height: 30px;
+    padding: 10px;
+    display: inline-block;
+}
+
+.pos .card-successfully {
+    color: #6EC89B;
+    line-height: 30px;
+    padding: 10px;
+}
+.pos .leftpane {
+    border-left: unset;
+    border-right: unset;
+    width: 10%;
+    max-width: 650px;
+}
+/*
+.pos .order-container {
+    background: inherit;
+}
+
+.pos .order {
+    background: inherit;
+}
+*/
+.card {
+    font-family: "Montserrat", "Odoo Unicode Support Noto", sans-serif;
+}
+
+.pos .search-box-full {
+    width: 100%;
+}
+
+.pos .switchpane .btn-switchpane h1 {
+    line-height: 1.0em !important;
+}
+
+.button, input {
+    font-family: inherit;
+}
+
+.pos .login_div {
+    text-align: unset;
+    width: 100%;
+    margin-left: unset
+}
+
+.alert b {
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.pos .modal-dialog .popup {
+    line-height: 30px;
+    background-color: #fff;
+    max-width: 800px;
+}
+
+.pos .modal-dialog .full-form {
+    min-width: 90% !important;
+    min-height: 90% !important;
+}
+
+.pos .modal-dialog .full-form .form-footer {
+    min-height: 60px;
+    padding: 10px;
+    margin-right: 20px;
+    position: fixed;
+    float: right;
+    bottom: 20px;
+    right: 0;
+}
+
+.pos .qty-soldout {
+    top: 0px;
+    position: absolute;
+    left: 0px;
+    font-size: 16px;
+    color: black;
+    background: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+}

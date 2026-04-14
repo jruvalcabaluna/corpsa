@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/ob_pos_combo_product/static/src/css/combo_product.css" />
+            <script type="text/javascript" src="/ob_pos_combo_product/static/src/js/combo_products.js"></script>
+            <script type="text/javascript" src="/ob_pos_combo_product/static/src/js/combo_popup.js"></script>
+        </xpath>
+    </template>
+
+</odoo>

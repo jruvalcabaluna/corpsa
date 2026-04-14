@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PosDiscountGroupWidget" owl="1">
+<!--        <t t-if="env.pos.config.allow_discounts_8a">-->
+            <div class="control-button" t-on-click="renderElement">
+                <i class="fa fa-tag"></i>
+                <span>Descuento Grupo</span>
+            </div>
+<!--        </t>-->
+    </t>
+
+</templates>

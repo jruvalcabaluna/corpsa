@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_event_details_full_inherit" inherit_id="website_event.event_details" name="Event Header">
+        <xpath expr="//t[@t-call='website_event.registration_template']" position="attributes">
+            <attribute name="t-if">not event.is_seat_booking</attribute>
+        </xpath>
+        <xpath expr="//t[@t-call='website_event.registration_template']" position="after">
+            <t t-if="event.is_seat_booking">
+                <div class="container mb-5">
+                    <div id="o_wevent_tickets" class="bg-white rounded shadow-sm d-flex align-items-center py-2 pl-3 pr-2 border-bottom">
+                        <t t-set="seat_href" t-value="'/event/%s/seatBooking' %(event.id)" />
+                        <div class="ml-auto pr-3"></div>
+                        <a t-att-data-id="event.id" class="btn btn-primary o_wevent_registration_btn collapsed" t-att-href="seat_href" style="font-size: 14px;">Seat Booking</a>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template id="sh_registration_attendee_details" name="Registration Attendee Details">
+        <div id="modal_attendees_registration" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <form id="attendee_registration" t-attf-action="/event/#{slug(event)}/registration/confirm" method="post" class="js_website_submit_form">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                    <div class="modal-content">
+                        <div class="modal-header align-items-center">
+                            <h4 class="modal-title">Attendees</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&amp;times;</span></button>
+                        </div>
+                        <t t-set="counter_type" t-value="1" />
+                        <t t-set="counter" t-value="0" />
+                        <t t-foreach="tickets" t-as="ticket" t-if="availability_check">
+                            <t t-foreach="ticket['seat_list']" t-as="att_counter" name="attendee_loop">
+                                <t t-set="counter" t-value="counter + 1" />
+                                <div class="modal-body bg-light border-bottom">
+                                    <h5 class="mt-1 pb-2 border-bottom">
+                                        Seat No #<span t-esc="att_counter" /> <small class="text-muted">- <span t-esc="ticket['name']" /></small>
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-lg my-2">
+                                            <label>Name</label>
+                                            <input class="form-control" type="text" t-attf-name="#{counter}-name" required="This field is required" />
+                                        </div>
+                                        <div class="col-lg my-2">
+                                            <label>Email</label>
+                                            <input class="form-control" type="email" t-attf-name="#{counter}-email" required="This field is required" />
+                                        </div>
+                                        <div class="col-lg my-2">
+                                            <label>Phone <small>(Optional)</small></label>
+                                            <input class="form-control" type="tel" t-attf-name="#{counter}-phone" />
+                                        </div>
+                                        <input class="d-none" type="text" t-attf-name="#{counter}-event_ticket_id" t-attf-value="#{ticket['id']}" />
+                                        <input class="d-none" type="text" t-attf-name="#{counter}-seat_no" t-attf-value="#{att_counter}" />
+                                    </div>
+                                    <t t-if="event.specific_question_ids">
+                                        <div t-foreach="event.specific_question_ids" t-as="question" class="row">
+                                            <t t-set="registration_index" t-value="counter" />
+                                            <div class="col-lg-6 mt-2">
+                                                <label t-esc="question.title" />
+                                                <t t-if="question.question_type == 'simple_choice'">
+                                                    <select t-attf-name="question_answer-#{registration_index}-#{question.id}" class="custom-select" required="true">
+                                                        <t t-foreach="question.answer_ids" t-as="answer">
+                                                            <option t-esc="answer.name" t-att-value="answer.id" />
+                                                        </t>
+                                                    </select>
+                                                </t>
+                                                <t t-elif="question.question_type == 'text_box'">
+                                                    <textarea t-attf-name="question_answer-#{registration_index}-#{question.id}" class="col-lg-12 form-control" />
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-set="counter_type" t-value="counter_type + 1" />
+                        </t>
+                        <t t-if="not availability_check">
+                            <strong> You ordered more tickets than available seats</strong>
+                        </t>
+                        <t t-if="event.general_question_ids">
+                            <div class="modal-body bg-light border-bottom">
+                                <div t-foreach="event.general_question_ids" t-as="question" class="row">
+                                    <t t-set="registration_index" t-value="counter" />
+                                    <div class="col-lg-6">
+                                        <label t-esc="question.title" />
+                                        <t t-if="question.question_type == 'simple_choice'">
+                                            <select t-attf-name="question_answer-#{registration_index}-#{question.id}" class="custom-select" required="true">
+                                                <t t-foreach="question.answer_ids" t-as="answer">
+                                                    <option t-esc="answer.name" t-att-value="answer.id" />
+                                                </t>
+                                            </select>
+                                        </t>
+                                        <t t-elif="question.question_type == 'text_box'">
+                                            <textarea t-attf-name="question_answer-#{registration_index}-#{question.id}" class="col-lg-12 form-control" />
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="modal-footer border-0 justify-content-between">
+                            <button type="button" class="btn btn-secondary js_goto_event" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" t-if="availability_check">Continue</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+</odoo>

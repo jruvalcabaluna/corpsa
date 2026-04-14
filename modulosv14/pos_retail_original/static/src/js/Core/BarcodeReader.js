@@ -1,0 +1,11 @@
+odoo.define('pos_retail.BarcodeReader', function (require) {
+    var BarcodeReader = require('point_of_sale.BarcodeReader');
+    const {posbus} = require('point_of_sale.utils');
+
+    BarcodeReader.include({
+        scan: function (code) {
+            this._super(code)
+            posbus.trigger('scan.barcode.validate.badgeID', code)
+        },
+    });
+});

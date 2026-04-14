@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="DoctorButtonWidget" owl="1">
+        <div class="control-button set-doctor" t-att-class="{ highlight: isHighlighted }" t-on-click="trigger('click-doctor')">
+            <i class="fa fa-user" role="img" aria-label="Doctor" title="Doctor" />
+                Doctor <t t-esc="currentDoctorName"/>
+        </div>
+    </t>
+
+    <t t-name="ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('subpads')]" position="before">
+            <div>
+                <DoctorButtonWidget/>
+             </div>
+        </xpath>
+    </t>
+
+</templates>

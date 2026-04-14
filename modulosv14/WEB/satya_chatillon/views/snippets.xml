@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/satya_chatillon/static/src/css/modal.css"/>
+            <link rel="stylesheet" href="/satya_chatillon/static/src/css/style.css"/>
+            <script src="/satya_chatillon/static/src/js/snippets.js" type="text/javascript" />
+            <script src="https://kit.fontawesome.com/f61a39f4f2.js" type="text/javascript" />
+        </xpath>
+    </template>
+
+</odoo>

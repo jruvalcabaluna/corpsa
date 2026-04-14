@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+        <template id="pos_report_sale_details_inherit" inherit_id="point_of_sale.report_saledetails">
+            <xpath expr="//table[1]" position="replace">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Price Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="product_category" t-value="[]"/>
+                        <t t-foreach="products" t-as="line">
+                            <t t-set="product_category"
+                               t-value="product_category+[line['categ_id']]"/>
+                        </t>
+                        <tr t-foreach="set(product_category)" t-as="category">
+                            <t t-set="category_total" t-value="0.0"/>
+                            <t t-set="category_qty" t-value="0.0"/>
+                            <tr>
+                                <td colspan="3" style="background-color:#ebebeb;">
+                                    <strong t-esc="category.name"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach='products' t-as='line'>
+                                <t t-if="category.id==line['categ_id'].id">
+                                    <t t-set="internal_reference"
+                                       t-value="line['code'] and '[%s] ' % line['code'] or ''"/>
+                                    <td>
+                                        <t t-esc="internal_reference"/>
+                                        <t t-esc="line['product_name']"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc="line['quantity']"/>
+                                        <t t-if='line["uom"] != "Units"'>
+                                            <t t-esc='line["uom"]'/>
+                                        </t>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc='line["price_unit"]'
+                                           t-options="{'widget': 'float', 'precision': currency_precision}"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

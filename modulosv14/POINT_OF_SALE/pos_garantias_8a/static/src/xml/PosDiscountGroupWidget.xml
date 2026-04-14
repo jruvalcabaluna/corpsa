@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!--    <t t-name="PosDiscountGroupWidget" owl="1">-->
+<!--        <div class="control-button" t-att-class="{ highlight: isHighlighted }">-->
+<!--&lt;!&ndash;        <span class="control-button js_discount_date">&ndash;&gt;-->
+<!--            <i class="fa fa-tag"></i>-->
+<!--            <span> </span>-->
+<!--            <span>Descuento Grupo</span>-->
+<!--        </div>-->
+<!--    </t>-->
+</templates>

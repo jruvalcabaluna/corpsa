@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="partner_risk_exceeded_wizard_8a" model="ir.ui.view">
+        <field name="name">Partner risk exceeded 8A</field>
+        <field name="model">partner.risk.exceeded.wiz</field>
+        <field name="inherit_id" ref="account_financial_risk.partner_risk_exceeded_wizard"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+
+                <group string="Límites Generales">
+                    <field name="risk_sale_order" string="Pedidos de Venta"/>
+                    <field name="risk_invoice_draft" string="Facturas en Borrador"/>
+                    <field name="risk_invoice_open" string="Facturas Abiertas"/>
+                    <field name="risk_invoice_unpaid" string="Facturas Impagadas"/>
+                    <field name="risk_account_amount" string="Otros Saldos Contables"/>
+                    <field name="risk_account_amount_unpaid" string="Otros Saldos Contables Impagados"/>
+                </group>
+                <group string="Límites Específicos">
+                    <field name="risk_sale_order_limit" string="Límite Pedidos de Venta"/>
+                    <field name="risk_invoice_draft_limit" string="Límite Facturas Borrador"/>
+                    <field name="risk_invoice_open_limit" string="Límite Facturas Abiertas"/>
+                    <field name="risk_invoice_unpaid_limit" string="Límite Facturas Impagados"/>
+                    <field name="risk_account_amount_limit" string="Límite Otros Saldos Contables"/>
+                    <field name="risk_account_amount_unpaid_limit" string="Límite Otros Saldos Contables Impagados"/>
+                </group>
+                <group>
+                    <field name="risk_total" string="Riesgo Total"/>
+                </group>
+                <group>
+                    <field name="credit_limit" string="Límite Crédito"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

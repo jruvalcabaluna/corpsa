@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_available_seat_selection,access_available_seat_selection,model_available_seat_selection,base.group_user,1,1,1,1
+access_event_seat_arrangement,access_event_seat_arrangement,model_event_seat_arrangement,base.group_user,1,1,1,1
+access_event_booked_seat,access_event_booked_seat,model_event_booked_seat,base.group_user,1,1,1,1
+access_event_booking_dashboard,access_event_booking_dashboard,model_event_booking_dashboard,base.group_user,1,1,1,1

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="CashierName" t-inherit="point_of_sale.CashierName" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('username')]" position="before">
+            <img t-att-src="getImage" style="height: 48px;margin-top: -14px;border-radius: 65%;margin-right: 10px;display: inline-block;"/>
+        </xpath>
+        <xpath expr="//span[hasclass('username')]" position="after">
+            <i class="fa fa-fa-sign-out"/>
+            <span class="username">
+                ( <t t-esc="env.pos.config.name" /> )
+            </span>
+        </xpath>
+    </t>
+
+</templates>

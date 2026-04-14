@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+		<!-- Add custom js for pos_combo_holos -->
+		<template id="assets_for_pos_bag_charges" inherit_id="point_of_sale.assets">
+			<xpath expr="." position="inside">
+<!--				<script type="text/javascript" src="/pos_combo_holos/static/src/js/pos_bag_charges.js"/>-->
+				<script type="text/javascript" src="/pos_combo_holos/static/src/js/LoadModels.js"/>
+				<script type="text/javascript" src="/pos_combo_holos/static/src/js/Order.js"/>
+				<script type="text/javascript" src="/pos_combo_holos/static/src/js/OrderLine.js"/>
+<!--				<script type="text/javascript" src="/pos_combo_holos/static/src/js/Chrome.js"/>-->
+				<script type="text/javascript" src="/pos_combo_holos/static/src/js/ButtonSetBundlePack.js"/>
+			</xpath>
+		</template>
+
+	</data>
+</odoo>
+
+					

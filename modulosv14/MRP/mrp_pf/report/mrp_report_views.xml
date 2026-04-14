@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="action_report_mrporder_vcocina" model="ir.actions.report">
+            <field name="name">Vale Cocina</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mrp_pf.report_mrporder_vcocina</field>
+            <field name="report_file">mrp_pf.report_mrporder_vcocina</field>
+            <field name="binding_model_id" ref="model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+
+</odoo>

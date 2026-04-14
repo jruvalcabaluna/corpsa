@@ -1,0 +1,181 @@
+<odoo>
+    <data>
+
+        <record id="odoopi_dashboard_sale_search_id" model="ir.ui.view">
+            <field name="model">dashboard.sale</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group expand="0" string="Group By">
+                        <filter string="Sale Representative" name="representative" domain="[]" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="odoopi_dashboard_sale_graph_id" model="ir.ui.view">
+            <field name="model">dashboard.sale</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="user_id" string="Sale Representative"/>
+                    <field name="partner_sale_no" type="measure"/>
+
+                </graph>
+            </field>
+        </record>
+
+        <record id="odoopi_dashboard_sale_kanban_id" model="ir.ui.view">
+            <field name="model">dashboard.sale</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_stock_kanban" create="false" delete="false">
+<!--                <kanban class="oe_background_grey o_kanban_dashboard o_account_kanban" create="false" delete="false">-->
+                    <field name="id"/>
+                    <field name="user_id"/>
+                    <field name="name"/>
+<!--                    <field name="sale_request_no"/>-->
+<!--                    <field name="sale_request_amount"/>-->
+                    <field name="sale_order_no"/>
+<!--                    <field name="sale_order_amount"/>-->
+<!--                    <field name="sale_locked_no"/>-->
+<!--                    <field name="sale_locked_amount"/>-->
+<!--                    <field name="sale_canceled_no"/>-->
+<!--                    <field name="sale_canceled_amount"/>-->
+                    <field name="partner_sale_no"/>
+                    <templates>
+
+                        <t t-name="kanban-box">
+                            <div>
+<!--                                <div class="row container shadow-lg p-3 mb-5 bg-white rounded">-->
+<!--                                    <div class="o_kanban_image  justify-content-center col-2">-->
+<!--                                        <img alt="Avatar"-->
+<!--                                             t-att-src="kanban_image('dashboard.purchase', 'image_128', record.id.raw_value)"-->
+<!--                                             class="oe_kanban_picture rounded-circle"-->
+<!--                                             style="max-height: 90px; max-width: 80px;"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-8 text-truncate mt-5 ">-->
+<!--                                                                                fa fa-user-circle-o-->
+<!--                                        <h3>-->
+<!--                                            <field name="name"/>-->
+<!--                                        </h3>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-2 oe_button_box mt-5" name="partner_sale_view">-->
+<!--                                        <button name="partner_sale_view" type="object" class="oe_stat_button fa fa-users">-->
+<!--                                            <field name="partner_sale_no" widget="boolean_button"/>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <div class="container">
+                                     <div>
+                                        <h5><field name="name"/></h5>
+                                     </div>
+
+
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-2">-->
+<!--                                            <button type="object" name="request_sale_view" class="btn btn-secondary mt-2 fa fa-hand-o-right">-->
+<!--                                                <field name="sale_request_no"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5">-->
+<!--                                            <button type="object" name="request_sale_view" class="btn btn-primary mt-2 fa fa-folder-open-o">-->
+<!--                                                Sale Request-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4">-->
+<!--                                            <button type="object" name="request_sale_view" class="btn btn-info mt-2 fa fa-usd">-->
+<!--                                                <field name="sale_request_amount"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <button type="object" name="order_sale_view" class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="sale_order_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+                                            <button type="object" name="order_sale_view" class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Pedidos
+                                            </button>
+                                        </div>
+<!--                                        <div class="col-4">-->
+<!--                                            <button type="object" name="order_sale_view" class="btn btn-info mt-2 fa fa-usd">-->
+<!--                                                <field name="sale_order_amount"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+                                    </div>
+
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-2">-->
+<!--                                            <button type="object" name="order_sale_invoiced_view" class="btn btn-secondary mt-2 fa fa-hand-o-right">-->
+<!--                                                <field name="sale_invoiced_no"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5">-->
+<!--                                            <button type="object" name="order_sale_invoiced_view" class="btn btn-primary mt-2 fa fa-folder-open-o">-->
+<!--                                                Sale Invoiced-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4">-->
+<!--                                            <button type="object" name="order_sale_invoiced_view" class="btn btn-info mt-2 fa fa-usd">-->
+<!--                                                <field name="sale_invoiced_amount"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-2">-->
+<!--                                            <button type="object" name="lock_sale_view" class="btn btn-secondary mt-2 fa fa-hand-o-right">-->
+<!--                                                <field name="sale_locked_no"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5">-->
+<!--                                            <button type="object" name="lock_sale_view" class="btn btn-primary mt-2 fa fa-folder-open-o">-->
+<!--                                                Pedidos Terminados-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4">-->
+<!--                                            <button type="object" name="lock_sale_view" class="btn btn-info mt-2 fa fa-usd">-->
+<!--                                                <field name="sale_locked_amount"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-2">-->
+<!--                                            <button type="object" name="cancel_sale_view" class="btn btn-secondary mt-2 fa fa-hand-o-right">-->
+<!--                                                <field name="sale_canceled_no"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-5">-->
+<!--                                            <button type="object" name="cancel_sale_view" class="btn btn-primary mt-2 fa fa-folder-open-o">-->
+<!--                                                Canceled Sale Order-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4">-->
+<!--                                            <button type="object" name="cancel_sale_view" class="btn btn-info mt-2 fa fa-usd">-->
+<!--                                                <field name="sale_canceled_amount"/>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="odoopi_dashboard_sale_action_id">
+            <field name="name">Dashboard Pedidos</field>
+            <field name="model_id" ref="model_dashboard_sale"/>
+            <field name="state">code</field>
+            <field name="code">action=model.data_dashboard_sale()</field>
+        </record>
+
+        <menuitem id="sale_dashboard_action_menu_id" name="Dashboard"
+                  parent="sale.sale_menu_root"
+                  action="odoopi_dashboard_sale_action_id" sequence="0"
+                  groups="odoopi_sale_report.sale_dashboard_group_id"/>
+    </data>
+</odoo>

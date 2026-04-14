@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form_cancel_pf" model="ir.ui.view">
+        <field name="name">view_picking_form_cancel_pf</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button
+                    name="action_cancel_all_operations"
+                    string="Cancel All Operations"
+                    groups="base.group_user"
+                    type="object"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

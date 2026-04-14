@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_pos" name="pos_retail_combo assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/pos_retail_combo/static/src/css/Core.scss"/>
+                <link rel="stylesheet" href="/pos_retail_combo/static/src/css/Custom.css"/>
+
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Core/LoadModels.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Core/Models.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Core/Order.js"/>
+
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Screens/ProductScreen/Cart/OrderLine.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Screens/ProductScreen/ControlButtons/ButtonSetBundlePack.js"/>
+
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/PopUps/PopUpSelectionBox.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/PopUps/ItemsQuantities.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/PopUps/ItemOfList.js"/>
+
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Screens/Receipt/OrderReceipt.js"/>
+                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Screens/Receipt/OrderReceiptLineExtra.js"/>
+<!--                <script type="text/javascript" src="/pos_retail_combo/static/src/js/Screens/ProductScreen/ProductItem.js"/>-->
+            </xpath>
+    </template>
+</odoo>
