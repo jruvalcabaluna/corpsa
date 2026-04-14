@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_landed_cost_template_view_form" model="ir.ui.view">
+        <field name="name">stock.landed.cost.template.form</field>
+        <field name="model">stock.landed.cost.template</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Stock Landed Cost Template">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Template Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group colspan="4" col="4">
+                            <field name="active" colspan ="2"/>
+                        </group>
+                    </group>
+                    <notebook name="main_book">
+                        <page string="Lines">
+                            <field name="slc_template_line_ids" widget="section_and_note_one2many">
+                                <tree string="Stock Landed Cost Template Lines" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="split_method"/>
+                                    <field name="account_id"/>
+                                    <field name="price_unit"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_landed_cost_template_view_tree" model="ir.ui.view">
+        <field name="name">stock.landed.cost.template.tree</field>
+        <field name="model">stock.landed.cost.template</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Landed Cost Template">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_landed_cost_template_action" model="ir.actions.act_window">
+        <field name="name">Stock Landed Cost Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.landed.cost.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your Stock Landed Cost Template
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="stock_landed_cost_template_menu" action="stock_landed_cost_template_action"
+              parent="stock.menu_stock_config_settings" sequence="1" name="Stock Landed Cost Templates"/>
+
+</odoo>

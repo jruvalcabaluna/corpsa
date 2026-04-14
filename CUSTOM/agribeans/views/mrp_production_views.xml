@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_form_view_agribeans" model="ir.ui.view">
+        <field name="name">mrp.production.form.agribeans</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                  <button name="action_view_landed_costs" type="object" string="Landed Costs" icon="fa-plus-square"
+                          groups="stock.group_stock_manager">
+                  </button>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="after">
+                <button name="button_create_landed_costs" class="oe_highlight" string="Create Landed Cost" type="object"/>
+           </xpath>
+        </field>
+    </record>
+</odoo>
